@@ -3,8 +3,10 @@ MyLittleBoxOfLinuxTricks
 
 This is a list of scripts, tricks and help docs on my Linux adventures.
 
-Scripts:
+Scripts: (bash, python and perl)
 ========================
+
+bash/update.sh - Used for updating a Distro without having to remember the package manager that you are using.
 
 Tricks:
 ========================
