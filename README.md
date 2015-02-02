@@ -15,6 +15,8 @@ Tricks:
 Documents:
 ========================
 
+ * Shells - Bash, Fish and Zsh
+ * Zipping - All of my zippers keeping on getting stuck...
 
 
 Please help me add, improve and correct any problems you find in this repository.
