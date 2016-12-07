@@ -1,21 +1,21 @@
-MyLittleBoxOfLinuxTricks
-========================
+# My Little Box Of Linux Tricks
 
 This is a list of scripts, tricks and help docs on my Linux adventures.
 
-Scripts: (bash, python and perl)
-========================
+## Bash
 
-* Bash / Shell
-  * update.sh - Used for updating a Distro without having to remember the package manager that you are using.
+I have both a `.bashrc` file here used to store configuration settings for Bash and a `.bash_aliases` file.
+This other file is used to store all my different aliases because I'm a lazy man.
 
-Tricks:
-========================
+## Vim
 
-Documents:
-========================
+I have both my `.vimrc` file used to configure Vim and the `.vim` folder.
+This is used to store over Vim based files such as Vundle bundles and different editor schema colours.
 
- * Zipping - All of my zippers keeping on getting stuck...
 
+## Contributing
 
 Please help me add, improve and correct any problems you find in this repository.
+
+
+
