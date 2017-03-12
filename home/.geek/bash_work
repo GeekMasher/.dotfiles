@@ -14,7 +14,7 @@ alias work-vm-test-poweroff="VBoxManage controlvm 'Ubuntu-TestServer' savestate"
 #====== Web testing ======#
 
 work-web-burp() {
-
+    burpsuite
 }
 work-web-chrome(){
     google-chrome
