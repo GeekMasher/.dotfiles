@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Update command
+update() {
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    sudo apt-get dist-upgrade -y
+	if [ $1 = "remove" ]; then
+		sudo apt autoremove -y
+	elif [ $1 == "reboot" ]; then
+		sudo reboot
+	fi
+}
+
+# Color support
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+# ls commands
+alias ll="ls -l"
+alias la="ls -la"
+
+# Server aliases
+server() {
+    echo ""
+    echo "External < $SERVER_EXT_IP:$SERVER_EXT_PORT >"
+    echo "Internal < $SERVER_INT_IP:$SERVER_INT_PORT >"
+    echo ""
+}
+
+alias server-ssh="ssh -p $SERVER_EXT_PORT $SERVER_EXT_USER@$SERVER_EXT_IP -t 'tmux a -t console || tmux new -s console'"
+alias server-ssh-test="ssh -p $SERVER_INT_PORT $SERVER_INT_USER@$SERVER_INT_IP -t 'tmux a -t console || tmux new -s console'"
+
+alias server-mount="sudo sshfs -o allow_other remote@$SERVER_EXT_IP:/home/remote/ /media/server-kappa -p $SERVER_EXT_PORT"
+alias server-mount-test="sudo sshfs -o allow_other geek@$SERVER_INT_IP:/home/geek/ /media/server-test -p $SERVER_INT_PORT"
+
+alias server-web="ssh -L 9000:$SERVER_EXT_IP:9000 -p $SERVER_EXT_PORT remote@$SERVER_EXT_IP"
+
+alias server-remote="ssh -p $SERVER_EXT_PORT remote@$SERVER_EXT_IP"
+
+server-vpn() {
+    
+    sudo /usr/sbin/openvpn $SERVER_EXT_OPENVPN
+}
+
+# Watch commands
+alias watch-ip="watch --color ifconfig"
+alias watch-net="watch --color netstat -lpn -u -t"
+alias watch-net-ext="watch --color netstat -lpn -u -t | grep '0.0.0.0'"
+alias watch-dir="watch --color ls --color -las"
+
