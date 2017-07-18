@@ -5,11 +5,7 @@ update() {
     sudo apt-get update -y
     sudo apt-get upgrade -y
     sudo apt-get dist-upgrade -y
-	if [ $1 = "remove" ]; then
-		sudo apt autoremove -y
-	elif [ $1 == "reboot" ]; then
-		sudo reboot
-	fi
+    sudo apt-get autoremove
 }
 
 # Color support
@@ -37,18 +33,21 @@ server() {
     echo ""
 }
 
-alias server-ssh="ssh -p $SERVER_EXT_PORT $SERVER_EXT_USER@$SERVER_EXT_IP -t 'tmux a -t console || tmux new -s console'"
-alias server-ssh-test="ssh -p $SERVER_INT_PORT $SERVER_INT_USER@$SERVER_INT_IP -t 'tmux a -t console || tmux new -s console'"
+server-ssh(){
+	ssh -p $SERVER_EXT_PORT $SERVER_EXT_USER@$SERVER_EXT_IP -t 'tmux a -t console || tmux new -s console'
+}
 
-alias server-mount="sudo sshfs -o allow_other remote@$SERVER_EXT_IP:/home/remote/ /media/server-kappa -p $SERVER_EXT_PORT"
-alias server-mount-test="sudo sshfs -o allow_other geek@$SERVER_INT_IP:/home/geek/ /media/server-test -p $SERVER_INT_PORT"
-
-alias server-web="ssh -L 9000:$SERVER_EXT_IP:9000 -p $SERVER_EXT_PORT remote@$SERVER_EXT_IP"
-
-alias server-remote="ssh -p $SERVER_EXT_PORT remote@$SERVER_EXT_IP"
+server-mount() {
+    if [ ! -d $SERVER_EXT_DIR ]; then
+        mkdir $SERVER_EXT_DIR
+    fi
+    shfs -p $SERVER_EXT_PORT -o allow_other $SERVER_EXT_USER@$SERVER_EXT_IP:/ $SERVER_EXT_DIR
+}
+server-unmount() {
+    umount $SERVER_EXT_DIR
+}
 
 server-vpn() {
-    
     sudo /usr/sbin/openvpn $SERVER_EXT_OPENVPN
 }
 
