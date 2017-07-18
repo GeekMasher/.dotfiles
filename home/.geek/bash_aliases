@@ -41,7 +41,8 @@ server-mount() {
     if [ ! -d $SERVER_EXT_DIR ]; then
         mkdir $SERVER_EXT_DIR
     fi
-    shfs -p $SERVER_EXT_PORT -o allow_other $SERVER_EXT_USER@$SERVER_EXT_IP:$SERVER_EXT_RDIR $SERVER_EXT_DIR
+    # Mount server dir
+    sshfs -p $SERVER_EXT_PORT -o allow_other $SERVER_EXT_USER@$SERVER_EXT_IP:$SERVER_EXT_RDIR $SERVER_EXT_DIR
 }
 server-unmount() {
     umount $SERVER_EXT_DIR
