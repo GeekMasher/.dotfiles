@@ -5,13 +5,12 @@ SERVER_EXT_IP="192.168.1.1"
 SERVER_EXT_PORT="22"
 SERVER_EXT_USER="root"
 
-SERVER_EXT_OPENVPN="server.openvpn"
+SERVER_EXT_RDIR="/"
+SERVER_EXT_DIR="/media/server-share"
 
+SERVER_EXT_OPENVPN="server.openvpn"
 
 # Internal vars
 SERVER_INT_IP="127.0.0.1"
 SERVER_INT_PORT="9980"
 SERVER_INT_USER="root"
-
-
-
