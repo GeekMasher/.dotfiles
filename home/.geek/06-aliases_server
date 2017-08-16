@@ -8,6 +8,15 @@ server() {
     echo ""
 }
 
+# Display versions of software on a Linux box (for servers mainly)
+server-versions() {
+    #echo "OpenSSH:    " `ssh -V`
+    echo "OpenVPN:    " `openvpn --version | head -1 | awk '{print $2}'`
+    #echo "Nginx:      " `nginx -v`
+}
+
+# ================================================
+# Client to server aliases
 server-ssh(){
 	ssh -p $SERVER_EXT_PORT $SERVER_EXT_USER@$SERVER_EXT_IP -t 'tmux a -t console || tmux new -s console'
 }
