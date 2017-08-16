@@ -70,32 +70,15 @@ esac
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Import one of the two var files
-if [ -f ~/.bash_variables ]; then
-    # Use 'local only' copy if present
-    source ~/.bash_variables 
-elif [ -f ~/.geek/bash_variables ]; then
-    # Use the Git repo vars
+if [ -f ~/.geek/ ]; then
+    # Set the variables
     source ~/.geek/bash_variables
-fi
 
-# Setup standard day-2-day aliases 
-if [ -f ~/.bash_aliases ]; then
-    # Use local bash_aliases file first
-    source ~/.bash_aliases
-elif [ -f ~/.geek/bash_aliases ]; then
-    # Use geek bash_aliases file second
-    source ~/.geek/bash_aliases
+    # Aliases
+    source ~/.geek/02-aliases_general
+    source ~/.geek/05-aliases_work
+    source ~/.geek/06-aliases_server
 fi
-# Setup work related aliases
-if [ -f ~/.bash_work ]; then
-    # Use local bash work file first 
-    source ~/.bash_work
-elif [ -f ~/.geek/bash_work ]; then
-    # Use geek bash work file second
-    source ~/.geek/bash_work 
-fi
-
-
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
