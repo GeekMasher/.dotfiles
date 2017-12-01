@@ -10,14 +10,21 @@ alias work-vm-kali-poweroff="VBoxManage controlvm 'Kali' savestate"
 alias work-vm-test="vboxheadless -s 'Ubuntu-TestServer' &"
 alias work-vm-test-poweroff="VBoxManage controlvm 'Ubuntu-TestServer' savestate"
 
+# java
+java-jar() {
+    # TODO check DPI (for 4K)
+    DPI=""
+    java $DPI -jar $@
+}
+
 
 #====== Web testing ======#
 
 work-web-burp() {
-    burpsuite
+    java-jar burpsuite
 }
 work-web-chrome(){
-    google-chrome
+    google-chrome --args --disable-web-security
 }
 
 work-web(){
