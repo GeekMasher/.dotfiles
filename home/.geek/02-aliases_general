@@ -25,17 +25,19 @@ fi
 alias ll="ls -l"
 alias la="ls -la"
 
-whatismyip() {
-    MYIP="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-    echo ${MYIP}
-
-    if [ "$MYIP" == "$SERVER_EXT_IP" ]; then
-        echo "Using external server (vpn)"
-    fi 
-}
+alias chmox="chmod -x"
 
 # Watch commands
 alias watch-ip="watch --color ifconfig"
 alias watch-net="watch --color netstat -lpn -u -t"
 alias watch-dir="watch --color ls --color -las"
 
+# whats my ip using dig + opendns
+whatismyip() {
+    MYIP="$(dig +short myip.opendns.com @resolver1.opendns.com)"
+    echo ${MYIP}
+
+    if [ "$MYIP" == "$SERVER_EXT_IP" ]; then
+        echo "Using external server (vpn)"
+    fi
+}
