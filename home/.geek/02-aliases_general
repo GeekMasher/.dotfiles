@@ -20,6 +20,7 @@ fi
 alias update="sudo apt-get update -y"
 alias upgrade="sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y"
 alias upgrade.clear="sudo apt-get autoremove -y && sudo apt-get clear -y"
+alias install="update && sudo apt-get install -y $*"
 
 # reboot / halt / poweroff
 alias reboot='sudo /sbin/reboot'
