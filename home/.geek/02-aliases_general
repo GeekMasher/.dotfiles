@@ -88,6 +88,8 @@ cd() {
     if [ -f "./bin/activate" ]; then
          source "./bin/activate"; PPP=$(pwd)
     elif [ ! -z "$PPP" ] && [[ $PWD != "$PPP"* ]]; then
+        # auto-freezing
+        pip freeze > "$PPP/requirements.txt"
         deactivate; PPP=""
     fi
 }
