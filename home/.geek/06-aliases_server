@@ -1,38 +1,27 @@
 #!/bin/bash
 
-# Basic server aliases
-server() {
-    echo ""
-    echo "External < $SERVER_EXT_IP:$SERVER_EXT_PORT >"
-    echo "Internal < $SERVER_INT_IP:$SERVER_INT_PORT >"
-    echo ""
-}
+# vpn commands
+alias vpn="sudo /usr/sbin/openvpn && ip.dns"
 
-# Display versions of software on a Linux box (for servers mainly)
-server-versions() {
-    #echo "OpenSSH:    " `ssh -V`
-    echo "OpenVPN:    " `openvpn --version | head -1 | awk '{print $2}'`
-    #echo "Nginx:      " `nginx -v`
-}
+# server commands
+alias server.tmux="ssh $@ -t 'tmux a -t console || tmux new -s console'"
 
-# ================================================
-# Client to server aliases
-server-ssh(){
-	ssh -p $SERVER_EXT_PORT $SERVER_EXT_USER@$SERVER_EXT_IP -t 'tmux a -t console || tmux new -s console'
-}
-
-server-mount() {
-    if [ ! -d $SERVER_EXT_DIR ]; then
-        mkdir $SERVER_EXT_DIR
-    fi
-    # Mount server dir
+server.mount(){
+    if [ ! -d $1 ]; then; mkdir -p $1; fi
+    # TODO: Mount server dir
     sshfs -p $SERVER_EXT_PORT -o allow_other $SERVER_EXT_USER@$SERVER_EXT_IP:$SERVER_EXT_RDIR $SERVER_EXT_DIR
 }
-server-unmount() {
-    umount $SERVER_EXT_DIR
+
+server.unmount() {
+    umount $@
 }
 
-server-vpn() {
-    sudo /usr/sbin/openvpn $SERVER_EXT_OPENVPN
-}
-
+# Virtiual machines
+if [ -x /usr/bin/vboxmanage ]; then
+    alias vm="vboxmanage --startvm $@"
+    alias vm.headless="vboxheadless --startvm $@"
+    alias vm.create="vboxmanage createvm --register --name $@"
+    alias vm.rm="vboxmanage unregistervm $@"
+    alias vm.list="vboxmanage list vms"
+fi
+# TODO: Add VMWare support
