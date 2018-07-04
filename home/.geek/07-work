@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Development
-alias python="python3"
-alias freeze="pip freeze > requirements.txt"
-alias pyinstall="python ./setup.py install"
-
 # Security
 VM_KALI="Kali"
 

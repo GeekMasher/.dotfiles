@@ -69,19 +69,10 @@ esac
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Import one of the two var files
-if [ -e ~/.geek/ ]; then
-    # Set the variables
-    if [ -f ~/.bash_variables ]; then
-        source ~/.bash_variables
-    else
-        source ~/.geek/01-variables
-    fi
-
-    # Aliases
-    source ~/.geek/02-aliases_general
-    source ~/.geek/05-aliases_work
-    source ~/.geek/06-aliases_server
+if [ -d ~/.geek ]; then
+    for filename in ~/.geek/*; do
+        source $filename
+    done
 fi
 
 if ! shopt -oq posix; then
@@ -91,8 +82,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
