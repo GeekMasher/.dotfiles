@@ -1,31 +1,31 @@
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/bundle')
+set nocompatible
+filetype off
 
-" Plugins
-Plugin 'VundleVim/Vundle.vim'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+"Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'kien/ctrlp.vim'
-"Plugin 'scrooloose/syntastic'
-"Plugin 'Yggdroot/indentLine'
-"Plugin 'marijnh/tern_for_vim'
-"Plugin 'bling/vim-airline'
-"Plugin 'othree/html5.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Yggdroot/indentLine'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'bling/vim-airline'
+Plugin 'othree/html5.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'hdima/python-syntax'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mxw/vim-jsx'
 
-
-" Vundle end
 call vundle#end()
-filetype on
+filetype plugin indent on
 
 syntax enable
-colorscheme desert
+colorscheme molokai
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start

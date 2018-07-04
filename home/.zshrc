@@ -8,7 +8,15 @@ ZSH_THEME="blinks"
 
 # plugins
 plugins=(
-  git debian docker mvn node npm pip python tmux
+  git
+  debian
+  docker
+  mvn
+  node
+  npm
+  pip
+  python
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -29,7 +37,7 @@ if [ -d ~/.geek ]; then
     done
 fi
 
-if [ -x screenfetch ]; then
+if [ -f /usr/bin/screenfetch ]; then
     echo ""
     screenfetch
 fi
