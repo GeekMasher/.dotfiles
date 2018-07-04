@@ -32,17 +32,17 @@ fi
 
 
 # ZSH
-if [ ! -f ~/.zshrc ]; then
-    banner "Creating '~/.zshrc' symlink"
-    ln -s "$(getHome .zshrc)" ~/.zshrc
-fi
-
-if [[ "$SHELL" != *"zsh" ]]; then
+if [[ ! -x /usr/bin/zsh ]]; then
     # https://github.com/robbyrussell/oh-my-zsh
     banner "Installing zsh..."
+    sudo apt-get install zsh screenfetch
+
+    if [ ! -f ~/.zshrc ]; then
+        banner "Creating '~/.zshrc' symlink"
+        ln -s "$(getHome .zshrc)" ~/.zshrc
+    fi
+
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     chsh -s /bin/zsh
-
-    sudo apt-get install screenfetch
 fi
