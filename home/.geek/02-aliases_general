@@ -18,8 +18,10 @@ fi
 
 # Update command
 alias update="sudo apt-get update -y"
+alias update.alts="sudo update-alternatives --config $@"
 alias upgrade="sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y"
 alias upgrade.clear="sudo apt-get autoremove -y && sudo apt-get clear -y"
+alias search="sudo apt-cache search $@"
 alias install="update && sudo apt-get install -y $*"
 
 # reboot / halt / poweroff
@@ -34,6 +36,8 @@ alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
 alias .....='cd ../../../../'
+
+alias rename="mv $1 $2"
 
 # ls commands
 alias ll="ls -l"
@@ -68,7 +72,16 @@ alias count.files="ls -l $1 | grep -v ^l | wc -l"
 alias edit="vim"
 alias svim="sude vim $*"
 alias top='htop'
-alias chmox="chmod -x $1"
+alias rename="mv $1 $2"
+alias chmox="chmod -x $@"
+
+explorer() {
+    if [ -x "$(exo-open)" ]; then    
+        exo-open --launch FileManager $@
+    elif [ -x "$(nautilus)" ]; then
+        nautilus $@
+    fi
+}
 
 afk() {
     if [ -x "$(xflock4)" ]; then
@@ -88,8 +101,6 @@ cd() {
     if [ -f "./bin/activate" ]; then
          source "./bin/activate"; PPP=$(pwd)
     elif [ ! -z "$PPP" ] && [[ $PWD != "$PPP"* ]]; then
-        # auto-freezing
-        pip freeze > "$PPP/requirements.txt"
         deactivate; PPP=""
     fi
 }
