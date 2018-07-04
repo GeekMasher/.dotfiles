@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Development
+alias python="python3"
+alias freeze="pip freeze > requirements.txt"
+alias pyinstall="python ./setup.py install"
+
+# Security
+VM_KALI="Kali"
+
+alias kali="vm.headless $VM_KALI"
+alias kali.proxy="VBoxManage modifyvm "$VM_KALI" --natpf1 "kali_ssh,tcp,,8080,,8080""
+alias kali.ssh="ssh.tmux root@127.0.0.1 -p 2222"
+alias kali.save="VBoxManage controlvm '$VM_KALI' savestate"
+
+# browsers
+alias chrome.ninja="google-chrome --profile-directory='Ninja'"
+alias chrome.dws="webninja --args --disable-web-security"
+# > https://www.chromium.org/developers/design-documents/network-settings
+alias chrome.proxy="webninja --proxy-server=127.0.0.1:8080"
+
+# work commands 
+alias work="echo 'Working hard or hardly working...'"
+work.web() {
+    kali.proxy      # setup proxying for Kali VM
+    kali &          # launch Kali VM
+    sleep 8         # magic sleep number ;)
+    chrome.proxy &  # setup chrome with proxy + disable auditor
+}
