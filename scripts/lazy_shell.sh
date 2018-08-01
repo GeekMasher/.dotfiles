@@ -24,12 +24,6 @@ if [ ! -f ~/.bash_variables ]; then
     cp ./home/.geek/01-variables ~/.bash_variables
 fi
 
-# BASHRC
-if [ ! -f ~/.bashrc ]; then
-    banner "Creating '~/.bashrc' symlink"
-    ln -s "$(getHome .bashrc)" ~/.bashrc
-fi
-
 
 # ZSH
 if [[ ! -x /usr/bin/zsh ]]; then
@@ -45,4 +39,8 @@ if [[ ! -x /usr/bin/zsh ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     chsh -s /bin/zsh
+# BASHRC
+else
+    banner "Creating '~/.bashrc' symlink"
+    ln -s "$(getHome .bashrc)" ~/.bashrc
 fi
