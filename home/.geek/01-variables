@@ -14,3 +14,8 @@ SERVER_EXT_OPENVPN="server.openvpn"
 SERVER_INT_IP="127.0.0.1"
 SERVER_INT_PORT="9980"
 SERVER_INT_USER="root"
+
+
+export GOPATH="/work/development/golang"
+export GOUSER="geekmasher"
+export PATH=$PATH:$(go env GOPATH)/bin

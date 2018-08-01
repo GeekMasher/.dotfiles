@@ -1,15 +1,49 @@
 #!/bin/bash
 
-# Development
+# Languages
+
+## Python
 alias python="python3"
 alias freeze="pip freeze > requirements.txt"
 alias pyinstall="python ./setup.py install"
 
+## GOLANG
+# > https://golang.org/doc/code.html#GOPATH
+alias go.here="export GOPATH=$(pwd) && export PATH=$PATH:$(go env GOPATH)/bin"
+go.create() {
+    if [ -z "$GOUSER" ]; then
+        # use git's username
+        GOUSER=$(git config --global user.name)
+    fi
+    # create project + path
+    PROJ=$GOPATH/src/github.com/$GOUSER/$1
+    mkdir -p $PROJ && cd $PROJ
+    # create git repo
+    git init
+    # go to workspace
+    cd $GOPATH
+}
 
-# JavaScript
-
-# nvm
+## JavaScript
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+
+# Tools/Applications
+
+## Git
+function git.ignore() {
+    # This function creates a `.gitignore` file using gitignore.io
+    if [ $# -eq 0 ]; then
+        echo "No arguments supplied"
+    else
+        echo "Using gitignore.io ..."
+        LANGS=$@
+        curl -L -s https://www.gitignore.io/api/${LANGS// /,} > ./.gitignore
+    fi
+}
+
+## Docker
+alias docker.shell="docker exec -it $1 bash"
