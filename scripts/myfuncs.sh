@@ -17,7 +17,7 @@ requiresRoot() {
     fi
 }
 
-osConatins() {
+osContains() {
     OS=`uname -a`
     if [[ $OS = *"$1"* ]]; then
         return 0

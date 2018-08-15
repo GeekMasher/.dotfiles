@@ -13,3 +13,5 @@ fi
 if [[ "$@" = *"docker"* ]]; then
     ./scripts/lazy_docker.sh $@
 fi
+
+./scripts/lazy_developver.sh $@

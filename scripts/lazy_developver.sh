@@ -7,7 +7,7 @@ fi
 
 
 # Python
-if [ ! -x python3 ]; then
+if [[ "$@" = *"python"* ]]; then
     banner 'Installing Python...'
     sudo apt-get install python3 python3-pip
 
@@ -15,7 +15,7 @@ if [ ! -x python3 ]; then
 fi
 
 # JavaScript
-if [ ! -d ~/.nvm ]; then
+if [[ "$@" = *"javascript"* ]]; then
     # - https://github.com/creationix/nvm#install-script
     banner 'Installing JavaScript (NVM)...'
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -24,7 +24,7 @@ if [ ! -d ~/.nvm ]; then
 fi
 
 # VSCode
-if [ ! -x code ]; then
+if [[ "$@" = *"vscode"* ]]; then
     # - https://code.visualstudio.com/docs/setup/linux
     banner "Installing VSCode..."
     curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -37,7 +37,7 @@ if [ ! -x code ]; then
 fi
 
 # Pycharm
-if [ ! -x pycharm ]; then
+if [[ "$@" = *"pycharm"* ]]; then
     sudo apt-get install wget
     PYCHARM="pycharm-professional-2018.1.4"
 

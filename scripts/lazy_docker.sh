@@ -11,7 +11,31 @@ fi
 
 
 # debian
-if [ -x $(osConatins 'Debian') ]; then
+if osContains 'Ubuntu'; then
+    echo "Install Ubuntu addition..."
+
+    requiresRoot
+    # cleanup old installs if present
+    sudo apt-get remove docker docker-engine docker.io
+
+    sudo apt-get update
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+
+    # download and install ket
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+    # update and install
+    sudo apt-get update
+    sudo apt-get install docker-ce
+
+    # create group and add current user to docker group
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    echo "Please logout (or reboot) to be able to use from current user..."
+
+elif osContains 'Debian'; then
     echo "Install Debain addition..."
 
     requiresRoot
@@ -34,6 +58,8 @@ if [ -x $(osConatins 'Debian') ]; then
     sudo groupadd docker
     sudo usermod -aG docker $USER
     echo "Please logout (or reboot) to be able to use from current user..."
+else
+    echo "The Operating system isn't supported for lazy docker"
 fi
 
 
