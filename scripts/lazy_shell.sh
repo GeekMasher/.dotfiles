@@ -26,7 +26,7 @@ fi
 
 
 # ZSH
-if [[ ! -x /usr/bin/zsh ]]; then
+if [[ "$@" = *"zsh"* ]]; then
     # https://github.com/robbyrussell/oh-my-zsh
     banner "Installing zsh..."
     sudo apt-get install zsh screenfetch
@@ -37,10 +37,12 @@ if [[ ! -x /usr/bin/zsh ]]; then
     fi
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
+    # change the default shell to zsh
     chsh -s /bin/zsh
+
 # BASHRC
 else
+    # default is bash 
     banner "Creating '~/.bashrc' symlink"
     ln -s "$(getHome .bashrc)" ~/.bashrc
 fi

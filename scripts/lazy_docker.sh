@@ -12,7 +12,7 @@ fi
 
 # debian
 if osContains 'Ubuntu'; then
-    echo "Install Ubuntu addition..."
+    banner "Install Ubuntu addition..."
 
     requiresRoot
     # cleanup old installs if present
@@ -33,10 +33,10 @@ if osContains 'Ubuntu'; then
     # create group and add current user to docker group
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    echo "Please logout (or reboot) to be able to use from current user..."
+    banner "Please logout (or reboot) to be able to use from current user..."
 
 elif osContains 'Debian'; then
-    echo "Install Debain addition..."
+    banner "Install Debain addition..."
 
     requiresRoot
     # cleanup old installs if present
@@ -57,7 +57,8 @@ elif osContains 'Debian'; then
     # create group and add current user to docker group
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    echo "Please logout (or reboot) to be able to use from current user..."
+
+    banner "Please logout (or reboot) to be able to use from current user..."
 else
     echo "The Operating system isn't supported for lazy docker"
 fi
