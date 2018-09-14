@@ -16,11 +16,21 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# Update this repo (only works if git cloned)
+update.geek() {
+    pushd . > /dev/null
+    cd "$(readlink -f ~/.geek/../..)"
+    echo "Updating MyLinuxBox..."
+    echo "$(git pull origin master 2> /dev/null)"
+    popd > /dev/null
+}
+
 # Update command
 alias update="sudo apt-get update -y"
 alias update.alts="sudo update-alternatives --config $@"
 alias upgrade="sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y"
 alias upgrade.clear="sudo apt-get autoremove -y && sudo apt-get clear -y"
+alias update.full="update.geek && update && upgrade"
 alias search="sudo apt-cache search $@"
 alias install="update && sudo apt-get install -y $*"
 
