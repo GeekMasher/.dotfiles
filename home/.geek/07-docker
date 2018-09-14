@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+docker.nuke() {
+    sudo docker stop 
+    sudo docker image prune -f
+    sudo docker container prune -f
+    sudo docker volumn prune -f    
+}
+
