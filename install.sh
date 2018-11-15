@@ -24,6 +24,7 @@ else
         ./scripts/lazy_docker.sh $@
     fi
 
+    ./scripts/lazy_kubes.sh $@
     ./scripts/lazy_developver.sh $@
 
 fi
