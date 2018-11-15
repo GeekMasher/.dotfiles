@@ -1,4 +1,12 @@
 #!/bin/bash
+if [ -f "./scripts/myfuncs.sh" ]; then
+    source ./scripts/myfuncs.sh
+elif [ -f "./myfuncs.sh" ]; then
+    source ./myfuncs.sh
+fi
+
+# References:
+# - https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-using-native-package-management
 
 if [[ "$@" = *"kubernetes"* ]]; then
     if osContains 'Ubuntu'; then
