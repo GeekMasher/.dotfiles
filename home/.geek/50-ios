@@ -1,0 +1,65 @@
+#!/bin/bash
+
+
+
+function ios() {
+    function _ios_prompt_info() {
+        _device_info=$(ideviceinfo)
+        device_name=$(echo "$_device_info" | grep "DeviceName: " | awk -F": " '{ print $2 }')
+        device_version=$(echo "$_device_info" | grep "ProductVersion: " | awk -F": " '{ print $2 }')
+
+        if [[ $device_name = "" ]]; then
+            echo "[ %{%F{blue}%}ios%{%B%F{green}%} :: %{%F{red}%}No Device Present%{%B%F{green}%} ]"
+        else
+            echo "[ %{%F{blue}%}ios%{%B%F{green}%} :: %{%F{magenta}%}$device_name - $device_version%{%B%F{green}%} ]"
+        fi
+    }
+
+    PROMPT='
+%{%K{${bkg}}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%} $(_ios_prompt_info)%E%{%f%k%b%}
+%{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%} '
+
+    function check() {
+        if ! ideviceinfo > /dev/null ; then
+            echo "[-] Is the iOS device connected??"
+            return 1
+        fi
+        return 0
+    }
+
+    function logs() {
+        if ! check; then
+            return
+        fi
+        idevicesyslog
+    }
+
+    function shell() {
+        if ! check; then
+            return
+        fi
+        # setup proxy for ssh
+        iproxy 2222 22 &
+        # connect
+        ssh -p 2222 127.0.0.1
+
+        killall iproxy
+    }
+
+    function tools() {
+        if ! check; then
+            return
+        fi
+
+        echo "[+] Loading tools..."
+
+        # setup proxy for ssh
+        iproxy 2222 22 &
+        # get the logs and pipe to tmp file
+        ios.log &
+        burp &
+        passionfruit &
+    }
+}
+
+
