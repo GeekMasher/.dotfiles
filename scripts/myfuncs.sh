@@ -6,9 +6,8 @@ banner() {
     echo "===================="
 }
 
-banner_error() {
-    echo "[!!!] $1"
-} 
+print.info() { echo '[+] $1' }
+print.error() { echo '[!] $1' }
 
 requiresRoot() {
     if [[ $EUID -ne 0 ]]; then

@@ -51,12 +51,14 @@ if [[ "$@" = *"zsh"* ]]; then
     if [ -f ~/.zshrc ]; then
         mv ~/.zshrc ~/.zshrc.bak
     fi
-    banner "Creating '~/.zshrc' symlink"
-    ln -s "$(getHome .zshrc)" ~/.zshrc
 
+    banner "Installing oh-my-zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     # change the default shell to zsh
     chsh -s /bin/zsh
+
+    banner "Creating '~/.zshrc' symlink"
+    ln -s "$(getHome .zshrc)" ~/.zshrc
 
 # BASHRC
 # else

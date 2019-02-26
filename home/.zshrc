@@ -37,7 +37,3 @@ if [ -d ~/.geek ]; then
     done
 fi
 
-if [ -f /usr/bin/screenfetch ]; then
-    echo ""
-    screenfetch
-fi

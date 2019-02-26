@@ -18,8 +18,8 @@ if osContains 'Ubuntu'; then
     # cleanup old installs if present
     sudo apt-get remove docker docker-engine docker.io
 
-    sudo apt-get update
-    sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+    sudo apt-get update -y
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
 
     # download and install ket
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -27,8 +27,8 @@ if osContains 'Ubuntu'; then
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
     # update and install
-    sudo apt-get update
-    sudo apt-get install docker-ce
+    sudo apt-get update -y
+    sudo apt-get install docker-ce -y
 
     # create group and add current user to docker group
     sudo groupadd docker

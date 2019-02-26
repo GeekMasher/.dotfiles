@@ -87,7 +87,7 @@ alias chmox="chmod -x $@"
 
 # music
 alias music="cd ~/Music"
-alias music.yt="/usr/local/bin/youtube-dl -x --audio-format mp3 $1"
+alias music.yt="python -m youtube_dl -x --audio-format mp3 $1"
 
 
 explorer() {
