@@ -20,8 +20,8 @@ fi
 
 echo "[+] Apps: $APPS"
 
-for filename in ./scripts/lazy_*; do
-    echo "[+] running $filename"
+    ./scripts/lazy_kubes.sh $@
+    ./scripts/lazy_developver.sh $@
 
     # source $filename PROFILE $APPS
 done
