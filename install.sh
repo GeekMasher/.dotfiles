@@ -1,27 +1,23 @@
 #!/bin/bash
-if [ -f "./scripts/myfuncs.sh" ]; then
-    source ./scripts/myfuncs.sh
-fi
 
-APPS=""
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-if [[ "$@" = *"standard"* ]]; then
-    APPS="zsh vim vscode"
-elif [[ "$@" = *"developer"* ]]; then
-    APPS="zsh vim vscode python golang javascript docker"
-elif [[ "$@" = *"server"* ]]; then
-    APPS="zsh vim docker"
-    if [[ "$@" = *"kubes"* ]]; then
-        APPS="$APPS kubernates"
+DOT_FOLDERS="bin,tmux,shells"
+
+
+for folder in $(echo $DOT_FOLDERS | sed "s/,/ /g"); do
+    echo "[+] Install folder: $folder"
+
+    if [[ ! -f "$HOME/$folder" ]]; then
+        dot_folder="$SCRIPT_DIR/$folder"
+
+        for file in $(find $dot_folder -maxdepth 1 ! -path $dot_folder); do
+
+            link_source="$dot_folder$file"
+            link_path="$HOME$file"
+
+            # echo " >> $link_source -> $link_path"
+            ln -s $link_source $link_path
+        done
     fi
-else
-    echo "[!] No profile was set..."
-fi
-
-echo "[+] Apps: $APPS"
-
-    ./scripts/lazy_kubes.sh $@
-    ./scripts/lazy_developver.sh $@
-
-    # source $filename PROFILE $APPS
 done

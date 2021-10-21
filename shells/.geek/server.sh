@@ -4,15 +4,15 @@
 alias vpn="sudo /usr/sbin/openvpn && ip.dns"
 
 # server commands
-alias server.tmux="ssh $@ -t 'tmux a -t console || tmux new -s console'"
+alias sconnect="ssh $@ -t 'tmux a -t main || tmux new -s main'"
 
-server.mount(){
+smount(){
     if [ ! -d $1 ]; then; mkdir -p $1; fi
     # TODO: Mount server dir
     sshfs -p $SERVER_EXT_PORT -o allow_other $SERVER_EXT_USER@$SERVER_EXT_IP:$SERVER_EXT_RDIR $SERVER_EXT_DIR
 }
 
-server.unmount() {
+sumount() {
     umount $@
 }
 
@@ -24,4 +24,3 @@ if [ -x /usr/bin/vboxmanage ]; then
     alias vm.rm="vboxmanage unregistervm $@"
     alias vm.list="vboxmanage list vms"
 fi
-# TODO: Add VMWare support
