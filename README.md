@@ -5,7 +5,7 @@ This repo has my dotfile's and random assortment of scripts.
 ## Installing
 
 ```bash
-git clone https://github.com/GeekMasher/MyLittleBoxOfLinuxTricks.git; cd MyLittleBoxOfLinuxTricks; ./install.sh
+git clone https://github.com/GeekMasher/.dotfiles.git dotfiles && cd MyLittleBoxOfLinuxTricks && ./install.sh
 ```
 
 

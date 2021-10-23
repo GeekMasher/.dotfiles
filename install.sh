@@ -2,7 +2,7 @@
 
 set -e
 
-DOT_FOULDERS="bin,tmux,zsh,geek"
+DOT_FOULDERS="bin,tmux,nvim,zsh,geek"
 
 for folder in $(echo $DOT_FOULDERS | sed "s/,/ /g"); do
     stow -t $HOME -D $folder
