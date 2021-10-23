@@ -1,10 +1,10 @@
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.geek/bin:$HOME/.local:/usr/local/bin:$PATH
 export ZSH=/home/$USER/.oh-my-zsh
-
+export EDITOR=nvim
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="blinks"
+ZSH_THEME="robbyrussell"
 
 # plugins
 plugins=(
@@ -25,7 +25,11 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
+# JavaScript
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 if [ -f '~/.bash_variables' ]; then
     source ~/.bash_variables
@@ -38,3 +42,4 @@ if [ -d ~/.geek ]; then
     done
 fi
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

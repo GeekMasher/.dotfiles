@@ -1,27 +1,12 @@
-#!/bin/bash
-if [ -f "./scripts/myfuncs.sh" ]; then
-    source ./scripts/myfuncs.sh
-fi
+#!/usr/bin/env bash
 
-APPS=""
+set -e
 
-if [[ "$@" = *"standard"* ]]; then
-    APPS="zsh vim vscode"
-elif [[ "$@" = *"developer"* ]]; then
-    APPS="zsh vim vscode python golang javascript docker"
-elif [[ "$@" = *"server"* ]]; then
-    APPS="zsh vim docker"
-    if [[ "$@" = *"kubes"* ]]; then
-        APPS="$APPS kubernates"
-    fi
-else
-    echo "[!] No profile was set..."
-fi
+DOT_FOULDERS="bin,tmux,nvim,zsh,geek"
 
-echo "[+] Apps: $APPS"
-
-    ./scripts/lazy_kubes.sh $@
-    ./scripts/lazy_developver.sh $@
-
-    # source $filename PROFILE $APPS
+for folder in $(echo $DOT_FOULDERS | sed "s/,/ /g"); do
+    stow -t $HOME -D $folder
+    stow -v -t $HOME $folder
 done
+
+
