@@ -1,5 +1,5 @@
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.geek/bin:/usr/local/bin:$PATH
 export ZSH=/home/$USER/.oh-my-zsh
 
 
