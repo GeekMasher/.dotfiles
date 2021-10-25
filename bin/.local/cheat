@@ -2,7 +2,8 @@
 
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-cht.sh
 
-selected=`cat ~/.cht-languages ~/.cht-command | fzf`
+selected=`cat ~/.cht-languages ~/.cht-commands | fzf`
+
 if [[ -z $selected ]]; then
     exit 0
 fi
@@ -11,7 +12,9 @@ read -p "Enter Query: " query
 
 if grep -qs "$selected" ~/.cht-languages; then
     query=`echo $query | tr ' ' '+'`
-    echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done
+    #echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done
+    tmux split-window -h -p 40 \
+            "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
 else
     curl -s cht.sh/$selected~$query | less
 fi
