@@ -80,15 +80,12 @@ alias browser=chrome
 alias now='date +"%T"'
 alias reload="exec $SHELL -l"
 alias count.files="ls -l $1 | grep -v ^l | wc -l"
-alias edit="vim"
+alias edit="nvim"
+command -qv nvim && alias vim nvim
 alias svim="sude vim $*"
 alias top='htop'
 alias rename="mv $1 $2"
 alias chmox="chmod -x $@"
-
-# music
-alias music="cd ~/Music"
-alias music.yt="python -m youtube_dl -x --audio-format mp3 $1"
 
 
 explorer() {
