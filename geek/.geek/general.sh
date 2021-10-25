@@ -81,7 +81,6 @@ alias now='date +"%T"'
 alias reload="exec $SHELL -l"
 alias count.files="ls -l $1 | grep -v ^l | wc -l"
 alias edit="nvim"
-command -qv nvim && alias vim nvim
 alias svim="sude vim $*"
 alias top='htop'
 alias rename="mv $1 $2"
