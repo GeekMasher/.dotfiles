@@ -2,19 +2,19 @@
 " - https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/init.vim
 " - https://gist.github.com/benfrain/4fe3aa3f54101d4565911998218ed724
 
+autocmd!
+scriptencoding utf-8
+if !1 | finish | endif
+
 if &compatible
     set nocompatible               " Be iMproved
 endif
 
 let mapleader = " "
+set shell=zsh
 
 " Required: 
 filetype plugin indent on
-
-" Only set syntax highlighting once!
-if !exists("g:syntax_on")
-    syntax enable
-endif 
 
 
 set path+=**
@@ -32,6 +32,11 @@ set wildignore+=**/android/*
 set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 
+" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
+
+
+" Plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
@@ -70,10 +75,6 @@ Plug 'mhinz/vim-rfc'
 call plug#end()
 
 
-" LSP
-lua require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
-
-
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
@@ -82,11 +83,20 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 
 " Colors / Background
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = '0'
+if exists("&termguicolord") && exists("&winblend")
+    if !exists("g:syntax_on")
+        syntax enable
+    endif 
 
-set background=dark
-colorscheme gruvbox
+    set background=dark
+    set termguicolors
+    set pumblend=5
+
+    let g:gruvbox_contrast_dark = 'hard'
+    let g:gruvbox_invert_selection = '0'
+
+    colorscheme gruvbox
+endif
 
 set updatetime=300
 set shortmess+=c
@@ -96,7 +106,6 @@ set splitbelow
 set splitright
 
 set mat=1
-set cursorline
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 
