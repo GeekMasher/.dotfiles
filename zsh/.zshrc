@@ -1,6 +1,11 @@
 
 export PATH=$HOME/.geek/bin:$HOME/.local:/usr/local/bin:$PATH
-export ZSH=/home/$USER/.oh-my-zsh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export ZSH=/Users/$USER/.oh-my-zsh
+else
+    export ZSH=/home/$USER/.oh-my-zsh
+fi
+
 export EDITOR=nvim
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes

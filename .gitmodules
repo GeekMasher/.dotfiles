@@ -1,0 +1,3 @@
+[submodule "github"]
+	path = github
+	url = git@github.com:GeekMasher/.dotfiles-github.git
