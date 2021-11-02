@@ -5,6 +5,8 @@
 #   - https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 
 # Color support
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -15,6 +17,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+
+alias tm="tmux a -t main || tmux new -t main"
 
 # Update this repo (only works if git cloned)
 update.geek() {
