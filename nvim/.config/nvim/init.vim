@@ -1,10 +1,7 @@
-"magic
+" NeoVim
 " - https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/init.vim
 " - https://gist.github.com/benfrain/4fe3aa3f54101d4565911998218ed724
 
-autocmd!
-scriptencoding utf-8
-if !1 | finish | endif
 
 if &compatible
     set nocompatible               " Be iMproved
@@ -52,6 +49,11 @@ Plug 'sbdchd/neoformat'
 Plug 'vim-utils/vim-man'
 Plug 'tpope/vim-projectionist'
 Plug 'junegunn/fzf.vim'
+Plug 'mbbill/undotree'
+
+" Developing
+Plug 'davidhalter/jedi-vim'
+Plug 'darrikonn/vim-gofmt'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -75,28 +77,33 @@ Plug 'mhinz/vim-rfc'
 call plug#end()
 
 
+" Imports
+lua require('geekmasher')
+
+
+
+lua require'lspconfig'.pyright.setup{}
+
 " Telescope
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({}))<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 " Colors / Background
-if exists("&termguicolord") && exists("&winblend")
-    if !exists("g:syntax_on")
-        syntax enable
-    endif 
+if !exists("g:syntax_on")
+    syntax enable
+endif 
 
-    set background=dark
-    set termguicolors
-    set pumblend=5
+set background=dark
+set termguicolors
+set pumblend=5
 
-    let g:gruvbox_contrast_dark = 'hard'
-    let g:gruvbox_invert_selection = '0'
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = '0'
 
-    colorscheme gruvbox
-endif
+colorscheme gruvbox
 
 set updatetime=300
 set shortmess+=c
@@ -119,6 +126,7 @@ set spellsuggest=best
 set wrap linebreak nolist
 set formatoptions=l
 set hidden
+set spell
 
 " Make the gutter for numbers wider by default
 set numberwidth=5
