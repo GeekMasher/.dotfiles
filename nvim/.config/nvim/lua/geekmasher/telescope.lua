@@ -22,7 +22,12 @@ require("telescope").setup({
         vimgrep_arguments = {
             'rg',
             '--hidden',
-            '--files',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case'
         },
     },
     pickers = {
