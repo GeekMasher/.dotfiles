@@ -123,6 +123,7 @@ nmap w <Up>
 nmap a <Left>
 nmap s <Down>
 nmap d <Right>
+nmap ff <cmd>delete<cr>
 
 set updatetime=300
 set shortmess+=c
