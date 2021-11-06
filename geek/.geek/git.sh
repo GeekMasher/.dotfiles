@@ -1,9 +1,16 @@
 
 ## Git
 
-function clone() {
-    git clone --recursive $@
+alias clone="git clone --recursive $@"
+alias branch="git checkout -b $@"
+alias status="git status"
+
+function worktree() {
+    echo "Enabling git worktree..."
+    alias clone="git clone --bare $@"
+    alias branch="git worktree add $@"
 }
+
 
 alias gitp="git push"
 alias gitc="git commit"

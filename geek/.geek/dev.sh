@@ -7,15 +7,19 @@ if [ -x "$(command -v python)" ]; then
     alias python="python3"
     alias freeze="pip freeze > requirements.txt"
     alias pyinstall="python ./setup.py install"
+    
+    PYTHON_PATH_LOCAL=$(echo $HOME/.local/lib/*/site-packages)
+    PATH="$PATH:$PYTHON_PATH_LOCAL"
+
 fi
 
 ## GOLANG
+export PATH=$PATH:/usr/local/go/bin
 
 if [ -x "$(command -v go)" ]; then
-
-export GOPATH="/work/development/golang"
-export GOUSER="geekmasher"
-export PATH=$PATH:$(go env GOPATH)/bin
+    export GOPATH="$HOME/golang"
+    export GOUSER="geekmasher"
+    export PATH=$PATH:$(go env GOPATH)/bin
 
 # > https://golang.org/doc/code.html#GOPATH
 alias go.here="export GOPATH=$(pwd) && export PATH=$PATH:$(go env GOPATH)/bin"
