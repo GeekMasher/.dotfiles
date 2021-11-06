@@ -89,8 +89,7 @@ call plug#end()
 " Imports
 lua require('geekmasher')
 
-
-
+" 
 lua require'lspconfig'.pyright.setup{}
 
 " Telescope
@@ -118,6 +117,12 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '0'
 
 colorscheme gruvbox
+
+" General keys
+nmap w <Up>
+nmap a <Left>
+nmap s <Down>
+nmap d <Right>
 
 set updatetime=300
 set shortmess+=c
