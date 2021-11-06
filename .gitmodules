@@ -1,3 +1,6 @@
 [submodule "github"]
 	path = github
 	url = git@github.com:GeekMasher/.dotfiles-github.git
+[submodule "personal"]
+	path = personal
+	url = git@github.com:GeekMasher/.dotfiles-personal.git
