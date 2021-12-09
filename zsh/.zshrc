@@ -36,8 +36,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-if [ -f '~/.bash_variables' ]; then
-    source ~/.bash_variables
+if [ -f '~/.env' ]; then
+    source ~/.env
 fi
 
 # load all .geek bash files
