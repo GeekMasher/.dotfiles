@@ -8,3 +8,16 @@ docker.nuke() {
     sudo docker container prune -f
     sudo docker volumn prune -f    
 }
+
+function docker-compose-start-all() {
+    for f in ./*; do
+        if [ -f "$f/docker-compose.yml" ]; then
+            pushd $f
+
+            docker-compose stop
+            docker-compose up -d
+
+            popd
+        fi
+    done
+}
