@@ -91,6 +91,16 @@ alias top='htop'
 alias rename="mv $1 $2"
 alias chmox="chmod -x $@"
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+
 colour-test() {
     awk 'BEGIN{
         s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;
