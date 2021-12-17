@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Python
+if [ -f "Pipfile" ]; then
+    pipenv run main
+elif [ -f "requirements.txt" && -d "tests" ]; then
+    echo "Unsupported at this time..."
+fi
+
+if [ -f "package.json" ]; then
+    npm run main 
+fi
+

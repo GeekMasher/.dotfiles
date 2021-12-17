@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Python
+if [ -f "Pipfile" ]; then
+    pipenv run test
+elif [ -f "requirements.txt" && -d "tests" ]; then
+    python3 -m unittest discover -s "tests" -p "test_*.py"
+fi
+
+# JavaScript
+if [ -f "package.json" ]; then
+    npm run test 
+fi
+
+# GoLang
+if [ -f "mod.go" ]; then
+    go test
+fi  
+

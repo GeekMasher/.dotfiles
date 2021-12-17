@@ -1,0 +1,22 @@
+#!/bin/bash
+
+get_latest_release() {
+  # https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
+  curl --silent "https://api.github.com/repos/neovim/neovim/releases/latest" |
+    jq -r '.assets[] | select(.name=="nvim.appimage").browser_download_url'
+}
+
+DOWNLOAD_URL=$(get_latest_release)
+
+echo "Download URL :: $DOWNLOAD_URL"
+
+mv ~/.local/nvim ~/.local/nvim.old
+curl -L -o ~/.local/nvim $DOWNLOAD_URL 2> /dev/null
+
+chmod +x ~/.local/nvim
+
+echo "$(nvim --version | head -n 1)"
+
+echo "Finish..."
+
+
