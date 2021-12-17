@@ -1,13 +1,35 @@
 #!/bin/bash
 
+
+FOUND="false"
+
+# Rust
+if [ -f "Cargo.toml" ]; then
+    cargo run
+    FOUND="true"
+fi
+
+# GoLang
+if [ -f "go.mod" ]; then
+    go run cmd/main.go
+    FOUND="true"
+fi 
+
 # Python
 if [ -f "Pipfile" ]; then
     pipenv run main
-elif [ -f "requirements.txt" && -d "tests" ]; then
-    echo "Unsupported at this time..."
+    FOUND="true"
 fi
 
+# JavaScript
 if [ -f "package.json" ]; then
     npm run main 
+    FOUND="true"
+fi
+
+
+# Finally, check if its worked
+if [ $FOUND == "false" ]; then
+    echo "[!] Build system not found..."
 fi
 
