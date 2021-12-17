@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+PATH=$PATH:~/.local/bin
+
 # Languages
 
 ## Python

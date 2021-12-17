@@ -1,8 +1,11 @@
 
+local nvim_lsp = require("lspconfig")
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local configs = require("lspconfig/configs")
+
 
 -- Setup nvim-cmp.
 local cmp = require("cmp")
@@ -22,14 +25,7 @@ require('lspkind').init({
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			-- For `vsnip` user.
-			-- vim.fn["vsnip#anonymous"](args.body)
-
-			-- For `luasnip` user.
 			require("luasnip").lsp_expand(args.body)
-
-			-- For `ultisnips` user.
-			-- vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	mapping = {

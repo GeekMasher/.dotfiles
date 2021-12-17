@@ -54,6 +54,7 @@ Plug 'mbbill/undotree'
 " Developing
 Plug 'davidhalter/jedi-vim'
 Plug 'darrikonn/vim-gofmt'
+" Plug 'ThePrimeagen/git-worktree.nvim'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -102,6 +103,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Python - Jedi 
 " https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt#L222
 let g:jedi#completions_command = "<C-b>"
+
+nnoremap <leader>t <cmd>!code-test<cr>
+nnoremap <leader>m <cmd>!code-main<cr>
 
 
 " Colors / Background
