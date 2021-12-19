@@ -16,6 +16,11 @@ if [ -x "$(command -v python)" ]; then
 
 fi
 
+## Rust
+source $HOME/.cargo/env
+PATH=$PATH:~/.cargo/bin
+
+
 ## GOLANG
 export PATH=$PATH:/usr/local/go/bin
 

@@ -104,8 +104,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt#L222
 let g:jedi#completions_command = "<C-b>"
 
-nnoremap <leader>t <cmd>!code-test<cr>
-nnoremap <leader>m <cmd>!code-main<cr>
+nnoremap <leader>t <cmd>!geek-code --test<cr>
+nnoremap <leader>m <cmd>!geek-code --main<cr>
 
 
 " Colors / Background

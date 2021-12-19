@@ -93,8 +93,12 @@ require("lspconfig").clangd.setup(config({
 	end,
 }))
 
-
 require("lspconfig").jedi_language_server.setup(config())
+
+-- https://rust-analyzer.github.io/manual.html#nvim-lsp
+require("lspconfig").rust_analyzer.setup(config({
+    cmd = { "rustup", "run", "nightly", "rust-analyzer"},
+}))
 
 
 require("lspconfig").gopls.setup(config({
