@@ -36,13 +36,12 @@ autocmd InsertLeave * set nopaste
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+" Colors
 Plug 'gruvbox-community/gruvbox'
-
-Plug 'vim-conf-live/vimconflive2021-colorscheme'
 Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 
-" 
+" Misc
 Plug 'ambv/black'
 Plug 'mbbill/undotree'
 Plug 'sbdchd/neoformat'
@@ -53,8 +52,11 @@ Plug 'mbbill/undotree'
 
 " Developing
 Plug 'davidhalter/jedi-vim'
-Plug 'darrikonn/vim-gofmt'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+" Plug 'darrikonn/vim-gofmt'
 " Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'voldikss/vim-floaterm'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -76,6 +78,7 @@ Plug 'onsails/lspkind-nvim'
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -104,9 +107,6 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt#L222
 let g:jedi#completions_command = "<C-b>"
 
-nnoremap <leader>t <cmd>!geek-code --test<cr>
-nnoremap <leader>m <cmd>!geek-code --main<cr>
-
 
 " Colors / Background
 if !exists("g:syntax_on")
@@ -122,12 +122,24 @@ let g:gruvbox_invert_selection = '0'
 
 colorscheme gruvbox
 
+
 " General keys
 nmap w <Up>
 nmap a <Left>
 nmap s <Down>
 nmap d <Right>
 nmap ff <cmd>delete<cr>
+
+" Easy to run code commands
+nnoremap <leader>t <cmd>!geek-code --test<cr>
+nnoremap <leader>m <cmd>!geek-code --main<cr>
+
+" Laxy write like 'CTRL+s'
+nnoremap <leader>s <cmd>:w<cr>
+
+" Reselect the visual selection
+vnoremap < <gv
+vnoremap > >gv
 
 set updatetime=300
 set shortmess+=c
