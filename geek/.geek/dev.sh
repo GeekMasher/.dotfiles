@@ -11,15 +11,17 @@ if [ -x "$(command -v python)" ]; then
     alias freeze="pip freeze > requirements.txt"
     alias pyinstall="python ./setup.py install"
     
-    PYTHON_PATH_LOCAL=$(echo $HOME/.local/lib/*/site-packages)
-    PATH="$PATH:$PYTHON_PATH_LOCAL"
-
+    if [ -d $HOME/.local/bin ]; then
+        PYTHON_PATH_LOCAL=$(echo $HOME/.local/lib/*/site-packages)
+        PATH="$PATH:$PYTHON_PATH_LOCAL"
+    fi
 fi
 
 ## Rust
-source $HOME/.cargo/env
-PATH=$PATH:~/.cargo/bin
-
+if [ -d $HOME/.cargo ]; then
+    source $HOME/.cargo/env
+    PATH=$PATH:~/.cargo/bin
+fi
 
 ## GOLANG
 export PATH=$PATH:/usr/local/go/bin
