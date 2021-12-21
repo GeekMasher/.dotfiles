@@ -1,8 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-set -e
+#set -e
 
-DOT_FOULDERS="bin,tmux,nvim,zsh,bash,geek,personal,github"
+DOT_FOULDERS="bin,tmux,nvim,zsh,bash,geek,personal,github,misc"
 
 for folder in $(echo $DOT_FOULDERS | sed "s/,/ /g"); do
     echo "[+] Folder :: $folder"
