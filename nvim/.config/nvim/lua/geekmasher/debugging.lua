@@ -1,11 +1,12 @@
 
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
+-- https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
 
 local dap = require('dap')
 
 dap.adapters.python = {
     type = 'executable';
-    command = 'path/to/virtualenvs/debugpy/bin/python';
+    command = 'python';
     args = { '-m', 'debugpy.adapter' };
 }
 
