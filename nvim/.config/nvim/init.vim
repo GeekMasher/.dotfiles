@@ -52,12 +52,13 @@ Plug 'mbbill/undotree'
 
 " Developing
 Plug 'davidhalter/jedi-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-commentary'
 " Plug 'darrikonn/vim-gofmt'
 " Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'vim-test/vim-test'
+Plug 'mfussenegger/nvim-dap'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -85,8 +86,8 @@ Plug 'nvim-treesitter/playground'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
-Plug 'tpope/vim-projectionist'
-Plug 'mhinz/vim-rfc'
+" Plug 'tpope/vim-projectionist'
+" Plug 'mhinz/vim-rfc'
 
 call plug#end()
 
@@ -138,6 +139,12 @@ nnoremap <leader>m <cmd>!geek-code --main<cr>
 nmap <silent> <leader>tt :TestNearest -strategy=neovim<CR>
 nmap <silent> <leader>tf :TestFile -strategy=neovim<CR>
 nmap <silent> <leader>tl :TestLast -strategy=neovim<CR>
+" nvim-dap
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 
 
 " Laxy write like 'CTRL+s'
