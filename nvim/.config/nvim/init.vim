@@ -57,6 +57,7 @@ Plug 'tpope/vim-commentary'
 " Plug 'darrikonn/vim-gofmt'
 " Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'voldikss/vim-floaterm'
+Plug 'vim-test/vim-test'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -131,8 +132,13 @@ nmap d <Right>
 nmap ff <cmd>delete<cr>
 
 " Easy to run code commands
-nnoremap <leader>t <cmd>!geek-code --test<cr>
+" nnoremap <leader>t <cmd>!geek-code --test<cr>
 nnoremap <leader>m <cmd>!geek-code --main<cr>
+" vim-test
+nmap <silent> <leader>tt :TestNearest -strategy=neovim<CR>
+nmap <silent> <leader>tf :TestFile -strategy=neovim<CR>
+nmap <silent> <leader>tl :TestLast -strategy=neovim<CR>
+
 
 " Laxy write like 'CTRL+s'
 nnoremap <leader>s <cmd>:w<cr>
