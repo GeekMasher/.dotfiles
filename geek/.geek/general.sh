@@ -129,9 +129,10 @@ afk() {
     if [ -x "$(xflock4)" ]; then
         # XFCE
        echo "Locking XFCE session..."
-    elif [ -x "$(/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend)" ]; then
+    elif [ -x "/usr/bin/pmset" ]; then
         # macbooks
         echo "Locking Macbook..."
+        pmset displaysleepnow
     fi
 }
 
