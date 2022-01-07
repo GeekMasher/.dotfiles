@@ -30,12 +30,7 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# JavaScript
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
+# Load any environment vars for this particular machine
 if [ -f ~/.env ]; then
     source ~/.env
 fi
@@ -47,11 +42,7 @@ if [ -d ~/.geek ]; then
     done
 fi
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
+# Run neofetch if present on machine
 if [ -x "$(command -v neofetch)" ]; then
     neofetch
 fi
-
-
