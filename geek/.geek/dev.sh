@@ -11,6 +11,7 @@ edit() {
         code $@
     fi
 }
+alias dot="cd $DOT_FOLDER && edit ."
 
 # Languages
 
