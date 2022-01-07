@@ -1,0 +1,56 @@
+{
+    "editor.formatOnSave": true,
+
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./tests",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "python.formatting.provider": "black",
+
+    "editor.rulers": [
+        80
+    ],
+
+    "workbench.iconTheme": "material-icon-theme",
+
+    "codeQL.runningQueries.debug": true,
+    "codeQL.runningQueries.autoSave": true,
+    "codeQL.runningQueries.numberOfThreads": 8,
+    "codeQL.runningQueries.memory": 8192,
+    "codeQL.cli.executablePath": "/Users/geekmasher/Documents/development/security-queries/bin/codeql/codeql",
+    "codeQL.telemetry.enableTelemetry": false,
+
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/*.pyc": true,
+        "private": true
+    },
+
+    "files.associations": {
+        "*.sarif": "json",
+        "*.qls": "yaml",
+        "*.html": "html"
+    },
+
+    "github.copilot.enable": {
+        "*": false,
+        "yaml": false,
+        "plaintext": false,
+        "markdown": false,
+        "python": true,
+        "javascript": false
+    },
+}

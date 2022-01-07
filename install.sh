@@ -2,7 +2,7 @@
 
 #set -e
 
-DOT_FOULDERS="bin,tmux,nvim,zsh,bash,geek,personal,github,misc"
+DOT_FOULDERS="bin,tmux,nvim,zsh,geek,vscode,personal,github,misc"
 
 if ! command -v stow &> /dev/null; then
     sudo apt install -y stow
