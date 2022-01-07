@@ -20,7 +20,8 @@ if [ -x "$(command -v python)" ]; then
     alias python="python3"
     alias freeze="pip freeze > requirements.txt"
     alias pyinstall="python ./setup.py install"
-    
+    alias pycompile="python -O -m compileall ./"
+
     if [ -d $HOME/.local/bin ]; then
         PYTHON_PATH_LOCAL=$(echo $HOME/.local/lib/*/site-packages)
         PATH="$PATH:$PYTHON_PATH_LOCAL"
@@ -35,27 +36,26 @@ fi
 
 ## GOLANG
 export PATH=$PATH:/usr/local/go/bin
-
 if [ -x "$(command -v go)" ]; then
     export GOPATH="$HOME/golang"
     export GOUSER="geekmasher"
     export PATH=$PATH:$(go env GOPATH)/bin
 
-# > https://golang.org/doc/code.html#GOPATH
-alias go.here="export GOPATH=$(pwd) && export PATH=$PATH:$(go env GOPATH)/bin"
-go.create() {
-    if [ -z "$GOUSER" ]; then
-        # use git's username
-        GOUSER=$(git config --global user.name)
-    fi
-    # create project + path
-    PROJ=$GOPATH/src/github.com/$GOUSER/$1
-    mkdir -p $PROJ && cd $PROJ
-    # create git repo
-    git init
-    # go to workspace
-    cd $GOPATH
-}
+    # > https://golang.org/doc/code.html#GOPATH
+    alias go-here="export GOPATH=$(pwd) && export PATH=$PATH:$(go env GOPATH)/bin"
+    go-create() {
+        if [ -z "$GOUSER" ]; then
+            # use git's username
+            GOUSER=$(git config --global user.name)
+        fi
+        # create project + path
+        PROJ=$GOPATH/src/github.com/$GOUSER/$1
+        mkdir -p $PROJ && cd $PROJ
+        # create git repo
+        git init
+        # go to workspace
+        cd $GOPATH
+    }
 fi
 
 ## JavaScript
