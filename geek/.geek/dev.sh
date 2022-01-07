@@ -1,7 +1,16 @@
 #!/bin/bash
 
-
 PATH=$PATH:~/.local/bin
+
+edit() {
+    if command -v nvim &> /dev/null; then
+        nvim $@
+    elif command -v vim &> /dev/null; then
+        vim $@
+    elif command -v code &> /dev/null; then
+        code $@
+    fi
+}
 
 # Languages
 
