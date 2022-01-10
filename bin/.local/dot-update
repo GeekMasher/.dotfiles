@@ -4,7 +4,7 @@
 if [ ! -z ${DOT_FOLDER+x} ]; then
     echo "[+] Sourcing env as dot folder..."
     source ~/.env 
-if
+fi
 
 
 pushd $DOT_FOLDER &>/dev/null
@@ -13,5 +13,6 @@ echo "[+] Updating dotfiles :: $DOT_FOLDER"
 git pull origin main
 git submodule update --remote
 
-popd &>/dev/null
+popd
+echo "[+] Updated dotfiles"
 
