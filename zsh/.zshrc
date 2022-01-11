@@ -32,7 +32,9 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Load any environment vars for this particular machine
 if [ -f ~/.env ]; then
-    source ~/.env
+    # export the .env file
+    # https://gist.github.com/mihow/9c7f559807069a03e302605691f85572#gistcomment-2706921
+    export $(cat ~/.env | sed 's/#.*//g' | xargs)
 fi
 
 # load all .geek bash files
