@@ -133,16 +133,4 @@ afk() {
     fi
 }
 
-cd() {
-    # normal change dir
-    builtin cd $@
-
-    # Python support
-    if [ -f "./bin/activate" ]; then
-         source "./bin/activate"; PPP=$(pwd)
-    elif [ ! -z "$PPP" ] && [[ $PWD != "$PPP"* ]]; then
-        deactivate; PPP=""
-    fi
-}
-
 

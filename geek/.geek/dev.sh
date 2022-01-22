@@ -11,7 +11,12 @@ edit() {
         code $@
     fi
 }
-alias dot="cd $DOT_FOLDER && edit ."
+
+alias dot="cd $DOT_FOLDER"
+
+alias dev="cd $DEV_FOLDER && dev-list --tmux"
+alias dev-list="$HOME/.local/dev -m list --tmux"
+alias dev-add="$HOME/.local/dev -m add"
 
 # Languages
 
