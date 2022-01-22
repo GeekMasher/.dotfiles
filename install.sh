@@ -4,7 +4,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PRESENT=false
 
-DOT_FOULDERS="bin,tmux,nvim,zsh,geek,vscode,personal,github,misc"
+DOT_FOULDERS="bin,tmux,nvim,zsh,dev,geek,vscode,personal,github,misc"
 
 if ! command -v stow &> /dev/null; then
     sudo apt install -y stow
