@@ -84,8 +84,14 @@ local function config(_config)
 	}, _config or {})
 end
 
+-- Python
+require("lspconfig").pyright.setup{}
+require("lspconfig").jedi_language_server.setup(config())
+
+-- TypeScript
 require("lspconfig").tsserver.setup(config())
 
+-- C / C++
 require("lspconfig").clangd.setup(config({
 	cmd = { "clangd", "--background-index", "--clang-tidy" },
 	root_dir = function()
@@ -93,14 +99,13 @@ require("lspconfig").clangd.setup(config({
 	end,
 }))
 
-require("lspconfig").jedi_language_server.setup(config())
-
+-- Rust 
 -- https://rust-analyzer.github.io/manual.html#nvim-lsp
 require("lspconfig").rust_analyzer.setup(config({
     cmd = { "rustup", "run", "nightly", "rust-analyzer"},
 }))
 
-
+-- GoLang
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },
 	settings = {

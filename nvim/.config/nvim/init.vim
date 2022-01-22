@@ -2,7 +2,6 @@
 " - https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/init.vim
 " - https://gist.github.com/benfrain/4fe3aa3f54101d4565911998218ed724
 
-
 if &compatible
     set nocompatible               " Be iMproved
 endif
@@ -32,16 +31,13 @@ set wildignore+=**/.git/*
 " Turn off paste mode when leaving insert
 autocmd InsertLeave * set nopaste
 
-
+" TODO: https://github.com/jessarcher/dotfiles/blob/master/nvim/init.vim#L105-L110
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-" Colors
-Plug 'gruvbox-community/gruvbox'
-Plug 'flazz/vim-colorschemes'
-Plug 'chriskempson/base16-vim'
-
-" Misc
+" ===== Colour Scheme ===== 
+source ~/.config/nvim/plugins/colours.vim
+" ===== Misc =====
 Plug 'ambv/black'
 Plug 'mbbill/undotree'
 Plug 'sbdchd/neoformat'
@@ -50,65 +46,36 @@ Plug 'tpope/vim-projectionist'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 
-" Developing
-Plug 'davidhalter/jedi-vim'
-" Plug 'tpope/vim-fugitive'
+" ===== Git ===== 
+source ~/.config/nvim/plugins/git.vim
+" ===== LSP =====
+source ~/.config/nvim/plugins/lsp.vim
+" ===== Telescope =====
+source ~/.config/nvim/plugins/telescope.vim
+" ===== Treesitter =====
+source ~/.config/nvim/plugins/treesitter.vim
+" ===== Debugging =====
+source ~/.config/nvim/plugins/debugging.vim
+
+" ===== Dev Misc =====
 " Plug 'tpope/vim-commentary'
 " Plug 'darrikonn/vim-gofmt'
-" Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'davidhalter/jedi-vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'vim-test/vim-test'
-Plug 'mfussenegger/nvim-dap'
 
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-" LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'simrat39/symbols-outline.nvim'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-Plug 'onsails/lspkind-nvim'
-
-" Neovim Tree shitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
+" Plug 'mhinz/vim-rfc'
 
 
-" Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
-" Plug 'tpope/vim-projectionist'
-" Plug 'mhinz/vim-rfc'
-
 call plug#end()
-
 
 " Imports
 lua require('geekmasher')
 
-" 
-lua require'lspconfig'.pyright.setup{}
-
-" Telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" LSP
-" Python - Jedi 
-" https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt#L222
-let g:jedi#completions_command = "<C-b>"
-
+" Keys
+source ~/.config/nvim/plugins/keybindings.vim
 
 " Colors / Background
 if !exists("g:syntax_on")
@@ -123,36 +90,6 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '0'
 
 colorscheme gruvbox
-
-
-" General keys
-nmap w <Up>
-nmap a <Left>
-nmap s <Down>
-nmap d <Right>
-nmap ff <cmd>delete<cr>
-
-" Easy to run code commands
-" nnoremap <leader>t <cmd>!geek-code --test<cr>
-nnoremap <leader>m <cmd>!geek-code --main<cr>
-" vim-test
-nmap <silent> <leader>tt :TestNearest -strategy=neovim<CR>
-nmap <silent> <leader>tf :TestFile -strategy=neovim<CR>
-nmap <silent> <leader>tl :TestLast -strategy=neovim<CR>
-" nvim-dap
-nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
-nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
-
-
-" Laxy write like 'CTRL+s'
-nnoremap <leader>s <cmd>:w<cr>
-
-" Reselect the visual selection
-vnoremap < <gv
-vnoremap > >gv
 
 set updatetime=300
 set shortmess+=c

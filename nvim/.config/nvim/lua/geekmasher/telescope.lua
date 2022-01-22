@@ -15,10 +15,10 @@ require("telescope").setup({
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
         file_ignore_patterns = {
-            "node_modules",
-            ".git",
+            "node_modules/",
+            ".git/",
             ".pyc",     -- Python
-            "target"    -- Rust
+            "target/"    -- Rust
         },
 
         vimgrep_arguments = {
