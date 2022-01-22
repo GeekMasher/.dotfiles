@@ -77,10 +77,6 @@ alias watch.ip="watch --color ifconfig"
 alias watch.net="watch --color netstat -lpn -u -t"
 alias watch.dir="watch --color ls --color -las"
 
-# browsers
-alias chrome='/opt/google/chrome/chrome'
-alias browser=chrome
-
 # misc
 alias now='date +"%T"'
 alias reload="exec $SHELL -l"
@@ -90,6 +86,7 @@ alias svim="sude vim $*"
 alias top='htop'
 alias rename="mv $1 $2"
 alias chmox="chmod -x $@"
+
 
 unameOut="$(uname -s)"
 case "${unameOut}" in
