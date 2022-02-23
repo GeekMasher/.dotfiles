@@ -57,6 +57,9 @@ source ~/.config/nvim/plugins/treesitter.vim
 " ===== Debugging =====
 source ~/.config/nvim/plugins/debugging.vim
 
+" ===== CodeQL =====
+source ~/.config/nvim/plugins/codeql.vim 
+
 " ===== Dev Misc =====
 " Plug 'tpope/vim-commentary'
 " Plug 'darrikonn/vim-gofmt'
