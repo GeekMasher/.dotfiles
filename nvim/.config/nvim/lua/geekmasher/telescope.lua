@@ -20,7 +20,8 @@ require("telescope").setup({
             ".git/",
             ".vscode/",
             ".pyc",     -- Python
-            "target/"    -- Rust
+            "target/",  -- Rust
+            "codeql/", "codeql-go/", "databases"     -- CodeQL
         },
 
         vimgrep_arguments = {
