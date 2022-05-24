@@ -1,4 +1,4 @@
-
+ 
 " General keys
 nmap w <Up>
 nmap a <Left>
@@ -11,7 +11,7 @@ let g:jedi#completions_command = "<C-b>"
 
 
 " Easy to run code commands
-" nnoremap <leader>t <cmd>!geek-code --test<cr>
+nnoremap <leader>t <cmd>!geek-code --test<cr>
 nnoremap <leader>m <cmd>!geek-code --main<cr>
 " nvim-dap
 nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
