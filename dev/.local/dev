@@ -1,6 +1,45 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-SCRIPT_RELATIVE_DIR=$(dirname "${0}")
+pushd $DEV_FOLDER > /dev/null
 
-python3 $SCRIPT_RELATIVE_DIR/dev.py $@
+if [ ! -d ./.git ]; then
+    PROJECT=$(cat $DEV_FOLDER/.dev.json | jq -r '.[].name' | gum filter)
+
+    PROJECT_PATH=$(\
+        cat $DEV_FOLDER/.dev.json | \
+        jq -r --arg PROJECT "$PROJECT" '.[] | select(.name==$PROJECT) | .path' \
+    )
+    # TODO: encode name
+    PROJECT_NAME=$(basename $PROJECT_PATH)
+else
+    PROJECT=$(basename $PWD)
+    PROJECT_NAME=$PROJECT
+    PROJECT_PATH=$PWD
+    echo " > $PROJECT ($PROJECT_PATH)"
+   
+    # TODO: Look up or add project?
+    PROJECT_PRESENT=$(\
+        cat $DEV_FOLDER/.dev.json | \
+        jq -r --arg PP "$PROJECT_PATH" '.[] | select(.path==$PP)'
+    )
+    echo $PROJECT_PRESENT
+
+    
+fi
+
+
+if [ ! -z ${PROJECT+x} ]; then
+    tmux has-session -t $PROJECT_NAME 2>/dev/null
+
+    if [ $? != 0 ]; then
+        # create and edit panel
+        tmux new-session  -s "$PROJECT_NAME" -c "$PROJECT_PATH" -d
+        tmux split-window -t "$PROJECT_NAME" -c "$PROJECT_PATH" -v -l 20% zsh 
+        tmux split-window -t "$PROJECT_NAME" -c "$PROJECT_PATH" -h zsh
+
+    fi 
+    tmux a -t "$PROJECT_NAME"
+else
+    echo "Cancelled dev command"
+fi
 
