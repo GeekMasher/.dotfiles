@@ -1,5 +1,11 @@
+local status, packer = pcall(require, 'packer')
+if (not status) then
+    vim.notify("Packer is not installed...")
+    return
+end
+
 -- Packer
-return require("packer").startup(function()
+packer.startup(function()
 
     -- Keeps Packer updating Packer
     use('wbthomason/packer.nvim')
