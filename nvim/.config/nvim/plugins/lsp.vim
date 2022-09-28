@@ -15,9 +15,12 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+" Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'onsails/lspkind-nvim'
-
+ 
+Plug 'ldelossa/litee.nvim'
+Plug 'ldelossa/litee-calltree.nvim'
+ 
 " Rust
 Plug 'simrat39/rust-tools.nvim'
 
