@@ -1,4 +1,5 @@
-
+local status, nvim_lsp = pcall(require, 'lspconfig')
+if (not status) then return end
 
 local nvim_lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
