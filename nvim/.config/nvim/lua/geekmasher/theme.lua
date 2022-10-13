@@ -17,6 +17,7 @@ vim.g.tokyonight_transparent = true
 
 
 -- Set scheme
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme tokyonight-storm")
+-- vim.cmd("colorscheme gruvbox")
 
 
