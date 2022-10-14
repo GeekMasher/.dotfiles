@@ -26,6 +26,9 @@ vim.keymap.set('n', '<F10>', '<cmd>!geek-code --test<cr>')
 -- Lazy man's saving...
 vim.keymap.set('n', '<C-s>', '<cmd>:w<cr>')
 
+-- Reselect the visual selections
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
 
 

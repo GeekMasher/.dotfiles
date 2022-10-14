@@ -59,7 +59,6 @@ end
 require('rust-tools').setup{
     tools = {
         autoSetHints = true,
-        -- hover_with_actions = true,
         runnables = {
             use_telescope = true
         },
@@ -74,7 +73,15 @@ require('rust-tools').setup{
         cmd = { "rustup", "run", "nightly", "rust-analyzer"},
         settings = {
             ["rust-analyzer"] = {
+                assist = {
+                    importEnforceGranularity = true,
+                    importEnforceGranularity = true,
+                },
+                cargo = {
+                    allFeatures = true
+                },
                 checkOnSave = {
+                    -- cargo clippy --all-targets -- -D clippy::all
                     command = "clippy"
                 },
             }

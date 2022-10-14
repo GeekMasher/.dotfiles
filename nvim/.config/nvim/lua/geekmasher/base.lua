@@ -19,6 +19,7 @@ vim.opt.title = true
 vim.opt.laststatus = 2
 vim.opt.inccommand = 'split'
 vim.opt.ignorecase = true
+vim.opt.mouse = ""
 
 -- Backup / Swap
 vim.opt.backup = false
