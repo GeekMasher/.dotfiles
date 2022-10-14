@@ -107,14 +107,13 @@ require'lspconfig'.yamlls.setup{
                 -- GitHub Actions
                 ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
                 -- Docker Compose
-                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.yml",
-                -- SARIF
-                ["https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/Documents/CommitteeSpecifications/2.1.0/sarif-schema-2.1.0.json"] = "*.sarif"
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.yml"
             }
         }
     }
 }
 
+-- Outline
 require("symbols-outline").setup{
 	-- whether to highlight the currently hovered symbol
 	-- disable if your cpu usage is higher than you want it
@@ -125,7 +124,3 @@ require("symbols-outline").setup{
 	-- default: true
 	show_guides = true,
 }
-
-
-
-
