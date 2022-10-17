@@ -71,5 +71,11 @@ packer.startup(function(use)
     -- > Rust
     use "simrat39/rust-tools.nvim"
     use "saecki/crates.nvim"
+
+
+
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)
 

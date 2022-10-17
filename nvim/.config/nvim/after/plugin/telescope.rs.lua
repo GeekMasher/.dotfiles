@@ -63,12 +63,12 @@ telescope.setup {
             '--column',
             '--smart-case'
         },
-    },
-    mappings = {
-        i = {
-            ['<C-x>'] = false,
-            ['<C-q>'] = actions.close
-        }, 
+        mappings = {
+            i = {
+                ['<C-x>'] = false,
+                ['<C-q>'] = actions.close
+            }, 
+        },
     },
     extensions = {
         fzy_native = {
@@ -80,6 +80,6 @@ telescope.setup {
 
 
 -- Keymaps
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ hidden = true }) end)
+vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ hidden = true, no_ignore = true }) end)
 
 

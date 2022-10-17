@@ -60,7 +60,7 @@ vim.opt.wildignore:append {
     -- Python
     '**/.pyc',
     -- Rust
-    'target/',
+    '**/target/',
     -- JS/TS
     '*/node_modules/*',
     -- Mobile
