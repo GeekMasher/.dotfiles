@@ -75,11 +75,13 @@ telescope.setup {
             override_generic_sorter = false,
             override_file_sorter = true,
         },
+        file_browser = {
+            theme = "dropdown",
+            hijack_netrw = true,
+        }
     },
 }
 
-
--- Keymaps
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ hidden = true, no_ignore = true }) end)
+telescope.load_extension("file_browser")
 
 

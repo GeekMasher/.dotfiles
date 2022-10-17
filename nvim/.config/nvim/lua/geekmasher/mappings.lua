@@ -5,7 +5,6 @@ vim.keymap.set('n', '+', '<C-a>')
 vim.keymap.set('n', '-', '<C-x>')
 
 
-
 -- LSP
 vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
 vim.keymap.set('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
@@ -26,6 +25,7 @@ vim.keymap.set('n', '<F10>', '<cmd>!geek-code --test<cr>')
 -- Lazy man's saving...
 vim.keymap.set('n', '<C-s>', '<cmd>:w<cr>')
 
+
 -- Reselect the visual selections
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
@@ -41,5 +41,30 @@ vim.keymap.set('v', '<leader>cu', crates.upgrade_crates, crate_opts)
 vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates, crate_opts)
 
 
+-- Telescope
+local telescope = require('telescope')
+local telescope_builtin = require('telescope.builtin')
 
+vim.keymap.set(
+    'n', '<leader>ff',
+    function()
+        -- Show hidden and ignored files
+        telescope_builtin.find_files({ hidden = true, no_ignore = true })
+    end
+)
+vim.keymap.set(
+    'n', '<leader>fd',
+    function()
+        telescope.extensions.file_browser.file_browser({
+            path = "%:p:h",
+            cwd = vim.fn.expand('%:p:h'),
+            respect_gitignore = false,
+            hidden = false,
+            grouped = true,
+            previewer = false,
+            initial_mode = "insert",
+            layout_config = { height = 40 }
+        })
+    end
+)
 
