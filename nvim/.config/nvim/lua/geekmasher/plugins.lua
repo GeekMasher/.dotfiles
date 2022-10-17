@@ -37,10 +37,14 @@ packer.startup(function(use)
     use 'ryanoasis/vim-devicons'
 
     -- Status line
+    use 'nvim-lualine/lualine.nvim'
 
     -- Telescope
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
+
+    -- Git 
+    use 'lewis6991/gitsigns.nvim'
 
     -- Treesitter
     use {
@@ -48,7 +52,6 @@ packer.startup(function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
     use 'nvim-treesitter/playground'
-
 
     -- LSP Magic
     use "neovim/nvim-lspconfig"
