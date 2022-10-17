@@ -31,9 +31,14 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 
+-- Rust
+-- https://github.com/Saecki/crates.Nvim
+local crates = require('crates')
+local crate_opts = { noremap = true, silent = true }
 
-
-
+vim.keymap.set('n', '<leader>cu', crates.upgrade_crate, crate_opts)
+vim.keymap.set('v', '<leader>cu', crates.upgrade_crates, crate_opts)
+vim.keymap.set('n', '<leader>cA', crates.upgrade_all_crates, crate_opts)
 
 
 

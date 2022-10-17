@@ -20,4 +20,3 @@ vim.g.tokyonight_transparent = true
 vim.cmd("colorscheme tokyonight-storm")
 -- vim.cmd("colorscheme gruvbox")
 
-

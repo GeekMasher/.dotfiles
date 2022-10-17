@@ -1,3 +1,16 @@
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 local status, packer = pcall(require, 'packer')
 if (not status) then
     vim.notify("Packer is not installed...")
@@ -19,7 +32,11 @@ packer.startup(function(use)
     use 'gruvbox-community/gruvbox'
     use 'flazz/vim-colorschemes'
     use 'folke/tokyonight.nvim'
+    -- Icons
     use 'kyazdani42/nvim-web-devicons'
+    use 'ryanoasis/vim-devicons'
+
+    -- Status line
 
     -- Telescope
     use 'nvim-telescope/telescope.nvim'
@@ -50,8 +67,9 @@ packer.startup(function(use)
     use "glepnir/lspsaga.nvim"
     use "simrat39/symbols-outline.nvim"
 
-
     -- Language Plugins
+    -- > Rust
     use "simrat39/rust-tools.nvim"
+    use "saecki/crates.nvim"
 end)
 

@@ -42,6 +42,8 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 	    { name = 'vsnip' },
 		{ name = "buffer" },
+        -- Crates
+        { name = "crates" }
 	},
 })
 
@@ -49,7 +51,7 @@ cmp.setup({
 
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
-		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	}, _config or {})
 end
 
@@ -63,10 +65,13 @@ require('rust-tools').setup{
             use_telescope = true
         },
         inlay_hints = {
-            -- only_current_line = true,
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
+            only_current_line = true,
+            show_parameter_hints = true,
+            parameter_hints_prefix = "<= ",
+            other_hints_prefix = "=> ",
+        },
+        hover_actions = {
+            auto_focus = true
         },
     },
     server = {
@@ -75,7 +80,7 @@ require('rust-tools').setup{
             ["rust-analyzer"] = {
                 assist = {
                     importEnforceGranularity = true,
-                    importEnforceGranularity = true,
+                    importPrefix = "crate"
                 },
                 cargo = {
                     allFeatures = true
@@ -88,9 +93,14 @@ require('rust-tools').setup{
         }
     },
 }
+-- https://github.com/Saecki/crates.nvim
+require("crates").setup {
+    autoupdate = false
+}
+
 
 -- Python
-require("lspconfig").pyright.setup{}
+require("lspconfig").pyright.setup(config())
 --require("lspconfig").jedi_language_server.setup(config())
 
 -- TypeScript
@@ -100,7 +110,7 @@ require("lspconfig").tsserver.setup(config())
 require'lspconfig'.yamlls.setup{
     on_attach=on_attach,
     flags = lsp_flags,
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     settings = {
         yaml = {
             schemas = {

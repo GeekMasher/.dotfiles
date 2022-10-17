@@ -38,11 +38,12 @@ function get_ignore_files()
     return files
 end
 
+
 telescope.setup {
     defaults = {
         file_sorter = sorters.get_fzy_sorter,
         
-        prompt_prefix = "🔍",
+        prompt_prefix = "🔍 ",
         hidden = true,
         color_devicons = true,
         file_previewer = previewers.vim_buffer_cat.new,
