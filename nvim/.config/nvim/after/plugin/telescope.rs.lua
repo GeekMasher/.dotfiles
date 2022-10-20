@@ -39,6 +39,7 @@ function get_ignore_files()
 end
 
 
+-- https://github.com/nvim-telescope/telescope.nvim
 telescope.setup {
     defaults = {
         file_sorter = sorters.get_fzy_sorter,

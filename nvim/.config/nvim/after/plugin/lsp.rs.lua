@@ -55,6 +55,17 @@ local function config(_config)
 	}, _config or {})
 end
 
+
+-- Null LS 
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.diagnostics.eslint,
+        require("null-ls").builtins.completion.spell,
+    },
+})
+
+
 -- Rust
 -- https://rust-analyzer.github.io/manual.html#nvim-lsp
 -- https://sharksforarms.dev/posts/neovim-rust/

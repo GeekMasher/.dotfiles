@@ -34,7 +34,7 @@ vim.keymap.set('v', '>', '>gv')
 -- Rust
 -- https://github.com/Saecki/crates.Nvim
 local crates = require('crates')
-local crate_opts = { noremap = true, silent = true }
+local crate_opts = { noremap = true, silent = false }
 
 vim.keymap.set('n', '<leader>cu', crates.upgrade_crate, crate_opts)
 vim.keymap.set('v', '<leader>cu', crates.upgrade_crates, crate_opts)
@@ -67,4 +67,10 @@ vim.keymap.set(
         })
     end
 )
+
+-- Trouble
+vim.keymap.set("n", "<F11>", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>tf", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+
+
 

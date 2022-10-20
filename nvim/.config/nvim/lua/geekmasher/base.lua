@@ -29,7 +29,7 @@ vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
 -- Shell used
 vim.opt.shell = 'zsh'
 vim.opt.cmdheight = 1
-vim.opt.showcmd = true
+vim.opt.showcmd = false
 
 -- Tab magic
 vim.opt.autoindent = true

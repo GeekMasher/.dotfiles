@@ -20,7 +20,6 @@ end
 -- Packer
 vim.cmd [[packadd packer.nvim ]]
 packer.startup(function(use)
-
     -- Keeps Packer updating Packer
     use 'wbthomason/packer.nvim'
      
@@ -59,7 +58,12 @@ packer.startup(function(use)
     use "hrsh7th/nvim-compe"
     use "hrsh7th/cmp-nvim-lsp"
     use "onsails/lspkind-nvim"
+    use 'jose-elias-alvarez/null-ls.nvim'
 
+    -- Trouble
+    use "folke/trouble.nvim"
+
+    -- CMP
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-buffer"
 
@@ -76,8 +80,7 @@ packer.startup(function(use)
     use "simrat39/rust-tools.nvim"
     use "saecki/crates.nvim"
 
-
-
+    -- Sync packer
     if packer_bootstrap then
         require('packer').sync()
     end
