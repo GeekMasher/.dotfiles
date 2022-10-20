@@ -58,7 +58,7 @@ packer.startup(function(use)
     use "hrsh7th/nvim-compe"
     use "hrsh7th/cmp-nvim-lsp"
     use "onsails/lspkind-nvim"
-    use 'jose-elias-alvarez/null-ls.nvim'
+    -- use 'jose-elias-alvarez/null-ls.nvim'
 
     -- Trouble
     use "folke/trouble.nvim"

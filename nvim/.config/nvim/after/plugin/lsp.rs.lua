@@ -1,10 +1,12 @@
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if (not status) then return end
 
-local nvim_lsp = require("lspconfig")
+-- https://github.com/neovim/nvim-lspconfig
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local configs = require("lspconfig/configs")
+
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local source_mapping = {
@@ -55,70 +57,15 @@ local function config(_config)
 	}, _config or {})
 end
 
-
--- Null LS 
-require("null-ls").setup({
-    sources = {
-        require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.diagnostics.eslint,
-        require("null-ls").builtins.completion.spell,
-    },
-})
-
-
--- Rust
--- https://rust-analyzer.github.io/manual.html#nvim-lsp
--- https://sharksforarms.dev/posts/neovim-rust/
-require('rust-tools').setup{
-    tools = {
-        autoSetHints = true,
-        runnables = {
-            use_telescope = true
-        },
-        inlay_hints = {
-            only_current_line = true,
-            show_parameter_hints = true,
-            parameter_hints_prefix = "<= ",
-            other_hints_prefix = "=> ",
-        },
-        hover_actions = {
-            auto_focus = true
-        },
-    },
-    server = {
-        cmd = { "rustup", "run", "nightly", "rust-analyzer"},
-        settings = {
-            ["rust-analyzer"] = {
-                assist = {
-                    importEnforceGranularity = true,
-                    importPrefix = "crate"
-                },
-                cargo = {
-                    allFeatures = true
-                },
-                checkOnSave = {
-                    -- cargo clippy --all-targets -- -D clippy::all
-                    command = "clippy"
-                },
-            }
-        }
-    },
-}
--- https://github.com/Saecki/crates.nvim
-require("crates").setup {
-    autoupdate = false
-}
-
-
 -- Python
-require("lspconfig").pyright.setup(config())
+nvim_lsp.pyright.setup(config())
 --require("lspconfig").jedi_language_server.setup(config())
 
 -- TypeScript
-require("lspconfig").tsserver.setup(config())
+nvim_lsp.tsserver.setup(config())
 
 -- Yaml
-require'lspconfig'.yamlls.setup{
+nvim_lsp.yamlls.setup{
     on_attach=on_attach,
     flags = lsp_flags,
     capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
@@ -134,14 +81,18 @@ require'lspconfig'.yamlls.setup{
     }
 }
 
--- Outline
-require("symbols-outline").setup{
-	-- whether to highlight the currently hovered symbol
-	-- disable if your cpu usage is higher than you want it
-	-- or you just hate the highlight
-	-- default: true
-	highlight_hovered_item = true,
-	-- whether to show outline guides
-	-- default: true
-	show_guides = true,
-}
+
+local status, symbols_outline = pcall(require, 'symbols-outline')
+if status then
+    -- Outline
+    symbols_outline.setup{
+        -- whether to highlight the currently hovered symbol
+        -- disable if your cpu usage is higher than you want it
+        -- or you just hate the highlight
+        -- default: true
+        highlight_hovered_item = true,
+        -- whether to show outline guides
+        -- default: true
+        show_guides = true,
+    }
+end

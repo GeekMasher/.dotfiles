@@ -1,4 +1,5 @@
 
+local opts = { noremap=true, silent=true }
 
 -- Increment/decrement
 vim.keymap.set('n', '+', '<C-a>')
@@ -15,6 +16,7 @@ vim.keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
 vim.keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
 vim.keymap.set('n', '<leader>gw', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>')
 
+vim.keymap.set('n', '<leader>o', vim.diagnostic.open_float, opts)
 
 -- Running Code
 -- TODO: Redo this using Nvim plugin
