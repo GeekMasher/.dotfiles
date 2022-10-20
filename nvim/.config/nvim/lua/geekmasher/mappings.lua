@@ -5,6 +5,8 @@ local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '+', '<C-a>')
 vim.keymap.set('n', '-', '<C-x>')
 
+-- Centralise Jumping
+vim.keymap.set('n', 'j', 'jzz', opts)
 
 -- LSP
 vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
