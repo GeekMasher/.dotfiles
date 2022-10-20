@@ -12,6 +12,7 @@ git clone https://github.com/GeekMasher/.dotfiles.git dotfiles && cd dotfiles &&
 ## Resources
 
 - https://github.com/ThePrimeagen/.dotfiles
+- https://github.com/craftzdog/dotfiles-public
 - https://yesmeck.github.io/tmuxrc/
 
 ## Contributing
