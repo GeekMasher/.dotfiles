@@ -16,6 +16,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ secrets.ACTIONS_SECRET }}
         submodules: true
 
     # Update references
