@@ -38,6 +38,15 @@ vim.keymap.set('n', '<C-s>', '<cmd>:w<cr>')
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
+-- JSON auto-format
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("AutoCommand", { clear  = true }),
+    pattern = "*.json",
+    callback = function()
+        vim.cmd("%!jq .")
+        print("Formatted JSON file...")
+    end
+})
 
 -- Rust
 -- https://github.com/Saecki/crates.Nvim
