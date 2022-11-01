@@ -21,15 +21,6 @@ fi
 
 alias tm="tmux a -t main || tmux new -t main"
 
-# Update this repo (only works if git cloned)
-update.geek() {
-    pushd . > /dev/null
-    cd "$(readlink -f ~/.geek/../..)"
-    echo "Updating MyLinuxBox..."
-    echo "$(git pull origin master 2> /dev/null)"
-    popd > /dev/null
-}
-
 # reboot / halt / poweroff
 alias reboot='sudo /sbin/reboot'
 alias poweroff='sudo /sbin/poweroff'
