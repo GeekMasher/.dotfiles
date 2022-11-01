@@ -30,16 +30,6 @@ update.geek() {
     popd > /dev/null
 }
 
-# Update command
-alias update="sudo apt update -y"
-alias update.alts="sudo update-alternatives --config $@"
-alias upgrade="sudo apt upgrade -y && sudo apt dist-upgrade -y"
-alias upgrade.clear="sudo apt autoremove -y && sudo apt clear -y"
-alias update.full="update.geek && update && upgrade"
-alias search="sudo apt-cache search $@"
-alias install="update && sudo apt install -y $*"
-alias install.deb="sudo dpkg -i $1 && sudo apt install -f"
-
 # reboot / halt / poweroff
 alias reboot='sudo /sbin/reboot'
 alias poweroff='sudo /sbin/poweroff'
