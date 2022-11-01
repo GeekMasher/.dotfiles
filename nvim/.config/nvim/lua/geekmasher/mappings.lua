@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.json",
     callback = function()
         vim.cmd("%!jq .")
-        print("Formatted JSON file...")
+        -- print("Formatted JSON file...")
     end
 })
 
