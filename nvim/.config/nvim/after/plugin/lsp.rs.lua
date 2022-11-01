@@ -64,6 +64,10 @@ nvim_lsp.pyright.setup(config())
 -- TypeScript
 nvim_lsp.tsserver.setup(config())
 
+
+-- JSON 
+nvim_lsp.jsonls.setup(config())
+
 -- Yaml
 nvim_lsp.yamlls.setup{
     on_attach=on_attach,
