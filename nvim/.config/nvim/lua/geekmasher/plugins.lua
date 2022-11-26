@@ -76,6 +76,8 @@ packer.startup(function(use)
     use "simrat39/symbols-outline.nvim"
 
     -- Language Plugins
+    -- > Auto-commenting
+    use "numToStr/Comment.nvim"
     -- > Rust
     use "simrat39/rust-tools.nvim"
     use "saecki/crates.nvim"
