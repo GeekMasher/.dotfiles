@@ -12,7 +12,12 @@ edit() {
     fi
 }
 
-alias dot="cd $DOT_FOLDER"
+dot() {
+    cd $DOT_FOLDER
+    if [ -x "$(command -v figlet)" ]; then
+        figlet -w 500 -f slant "Dotfiles" | lolcat
+    fi
+}
 
 alias dev="cd $DEV_FOLDER && dev-list --tmux"
 alias dev-list="$HOME/.local/dev -m list --tmux"
