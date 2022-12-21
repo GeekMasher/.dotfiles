@@ -34,6 +34,7 @@ if [ -x "$(command -v python)" ]; then
 fi
 
 ## Rust
+export RUST_LOG=info
 if [ -d $HOME/.cargo ]; then
     source $HOME/.cargo/env
     PATH=$PATH:~/.cargo/bin
