@@ -9,20 +9,19 @@ fi
 export EDITOR=nvim
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
-# plugins
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
   git
-  debian
   docker
-  mvn
-  node
-  npm
-  pip
-  python
-  tmux
   kubectl
+  tmux
+  python
+  rust
+  debian
+  macos
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -39,6 +38,7 @@ fi
 
 # load all .geek bash files
 if [ -d ~/.geek ]; then
+    # See https://github.com/GeekMasher/.dotfiles/tree/main/geek/.geek
     for filename in ~/.geek/*; do
         source $filename
     done
