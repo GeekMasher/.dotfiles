@@ -8,6 +8,7 @@ vim.opt.pumblend = 5
 vim.opt.background = 'dark'
 
 -- Settings
+-- https://github.com/folke/tokyonight.nvim
 require("tokyonight").setup({
     style = "storm",
     transparent = true,

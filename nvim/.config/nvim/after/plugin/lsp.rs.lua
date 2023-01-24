@@ -8,6 +8,8 @@ if (not status) then return end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local opts = { noremap = true, silent = true }
 local configs = require("lspconfig/configs")
 
 -- Setup Mason 
@@ -78,14 +80,28 @@ nvim_lsp.pyright.setup(config())
 -- TypeScript
 nvim_lsp.tsserver.setup(config())
 
+-- Lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+nvim_lsp.sumneko_lua.setup(config({
+    settings = {
+        runtime = {
+            version = 'LuaJIT'
+        },
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'},
+            },
+        },
+        telemetry = { enable = false }
+    }
+}))
 
 -- JSON 
 nvim_lsp.jsonls.setup(config())
 
 -- Yaml
-nvim_lsp.yamlls.setup{
-    on_attach=on_attach,
-    flags = lsp_flags,
+nvim_lsp.yamlls.setup(config({
     capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     settings = {
         yaml = {
@@ -97,7 +113,7 @@ nvim_lsp.yamlls.setup{
             }
         }
     }
-}
+}))
 
 
 local status, symbols_outline = pcall(require, 'symbols-outline')
