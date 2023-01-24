@@ -8,13 +8,16 @@ vim.opt.pumblend = 5
 vim.opt.background = 'dark'
 
 -- Settings
-vim.opt.background = "dark"
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.g.gruvbox_invert_selection = '0'
-
-vim.g.tokyonight_transparent_sidebar = true
-vim.g.tokyonight_transparent = true
-
+require("tokyonight").setup({
+    style = "storm",
+    transparent = true,
+    terminal_colors = true,
+    styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+    },
+    sidebars = { "qf", "vista_kind", "terminal", "packer" },
+})
 
 -- Set scheme
 vim.cmd("colorscheme tokyonight-storm")

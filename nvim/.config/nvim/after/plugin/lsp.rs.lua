@@ -1,3 +1,6 @@
+local status, mason = pcall(require, 'mason')
+if (not status) then return end
+
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if (not status) then return end
 
@@ -6,6 +9,17 @@ if (not status) then return end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local configs = require("lspconfig/configs")
+
+-- Setup Mason 
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 
 -- Setup nvim-cmp.
 local cmp = require("cmp")

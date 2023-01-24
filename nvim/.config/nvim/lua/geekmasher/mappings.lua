@@ -9,8 +9,8 @@ vim.keymap.set('n', '-', '<C-x>')
 vim.keymap.set('n', 'j', 'jzz', opts)
 vim.keymap.set('n', 'k', 'kzz', opts)
 
-vim.keymap.set('n', '<S-Down>', '20jzz', opts)
-vim.keymap.set('n', '<S-Up>', '20kzz', opts)
+vim.keymap.set('n', 'J', '20jzz', opts)
+vim.keymap.set('n', 'K', '20kzz', opts)
 
 -- LSP
 vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
