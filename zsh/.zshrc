@@ -6,10 +6,11 @@ else
     export ZSH=/home/$USER/.oh-my-zsh
 fi
 
+export ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 export EDITOR=nvim
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="geekmasher"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
@@ -22,6 +23,7 @@ plugins=(
   debian
   macos
   colored-man-pages
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -49,3 +51,7 @@ if [ -x "$(command -v neofetch)" ]; then
     neofetch
 fi
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
