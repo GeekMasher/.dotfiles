@@ -2,6 +2,7 @@ local status, rust_tools = pcall(require, 'rust-tools')
 if (not status) then return end
 
 -- Rust
+-- https://github.com/simrat39/rust-tools.nvim
 -- https://rust-analyzer.github.io/manual.html#nvim-lsp
 -- https://sharksforarms.dev/posts/neovim-rust/
 rust_tools.setup{
@@ -21,7 +22,7 @@ rust_tools.setup{
         },
     },
     server = {
-        cmd = { "rustup", "run", "nightly", "rust-analyzer"},
+        cmd = { "rustup", "run", "nightly", "rust-analyzer" },
         settings = {
             ["rust-analyzer"] = {
                 assist = {
@@ -34,18 +35,29 @@ rust_tools.setup{
                 checkOnSave = {
                     -- cargo clippy --all-targets -- -D clippy::all
                     command = "clippy"
-                },
+                }
             }
         }
-    },
+    }
 }
 
 
 -- https://github.com/Saecki/crates.nvim
-local status, crates = pcall(require, 'crates')
-if status then
+local cstatus, crates = pcall(require, 'crates')
+if cstatus then
     crates.setup {
-        autoupdate = false
+        smart_insert = true,
+        autoupdate = false,
+        show_version_date = true,
+        text = {
+            loading = " Loading...",
+            version = " %s",
+            prerelease = " %s",
+            yanked = " %s",
+            nomatch = " No match",
+            upgrade = " %s",
+            error = " Error fetching crate",
+        },
     }
 end
 
