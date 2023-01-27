@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-SCRIPT_RELATIVE_DIR=$(dirname "${0}")
-
-python3 $SCRIPT_RELATIVE_DIR/dev.py $@
-

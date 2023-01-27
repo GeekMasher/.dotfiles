@@ -13,15 +13,12 @@ edit() {
 }
 
 dot() {
-    cd $DOT_FOLDER
-    if [ -x "$(command -v figlet)" ]; then
+    if [ -x "$(command -v figlet)" ] && [ -x "$(command -v lolcat)" ]; then
+        # Only pretty print if both `figlet` and `lolcat` is present
         figlet -w 500 -f slant "Dotfiles" | lolcat
     fi
+    cd $DOT_FOLDER
 }
-
-alias dev="cd $DEV_FOLDER && dev-list --tmux"
-alias dev-list="$HOME/.local/dev -m list --tmux"
-alias dev-add="$HOME/.local/dev -m add"
 
 # Languages
 
@@ -70,8 +67,7 @@ if [ -x "$(command -v go)" ]; then
 fi
 
 ## JavaScript
-if [ -x "$(command -v node)" ]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
