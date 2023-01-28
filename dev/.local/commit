@@ -9,6 +9,8 @@ if ! command -v gum &> /dev/null; then
     exit 1
 fi
 
+gum spin --spinner dot --title 'Commiting my code!' sleep 1
+
 TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
 SCOPE=$(gum input --placeholder "scope")
 
