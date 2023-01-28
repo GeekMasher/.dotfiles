@@ -8,6 +8,13 @@ This repo has my dotfile's and random assortment of scripts.
 git clone https://github.com/GeekMasher/.dotfiles.git dotfiles && cd dotfiles && ./install.sh
 ```
 
+### Docker Image 
+
+```bash
+docker build -t geekmasher/dotfile .
+docker run --rm -it --entrypoint zsh geekmasher/dotfile
+```
+
 
 ## Resources
 
