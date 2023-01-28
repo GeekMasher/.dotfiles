@@ -4,24 +4,24 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PRESENT=false
 
-DOT_FOULDERS="bin,tmux,nvim,zsh,dev,geek,misc"
+DOT_FOLDERS="bin,tmux,nvim,zsh,dev,geek,misc"
 
 # parse other arguments
 for i in "$@"; do
   case $i in
     -p|--personal)
         echo "Enabling Personal mode..."
-        DOT_FOULDERS="$DOT_FOULDERS,personal"
+        DOT_FOLDERS="$DOT_FOLDERS,personal"
         shift
         ;;
     -s|--server)
         echo "Enabling Server mode..."
-        DOT_FOULDERS="$DOT_FOULDERS"
+        DOT_FOLDERS="$DOT_FOLDERS"
         shift
         ;;
     -w|--work)
         echo "Enabling Work mode..."
-        DOT_FOULDERS="$DOT_FOULDERS,github,vscode"
+        DOT_FOLDERS="$DOT_FOLDERS,github,vscode"
         shift
         ;;
     -*|--*)
@@ -33,16 +33,17 @@ for i in "$@"; do
   esac
 done
 
-
+echo "[+] Dotfiles :: $SCRIPT_DIR"
 
 if ! command -v stow &> /dev/null; then
     sudo apt install -y stow
 fi
 
-for folder in $(echo $DOT_FOULDERS | sed "s/,/ /g"); do
+for folder in $(echo $DOT_FOLDERS | sed "s/,/ /g"); do
     echo "[+] Folder :: $folder"
-    stow --ignore=README.md --ignore=LICENSE \
-        -t $HOME -D $folder
+
+    stow -t $HOME -D $folder \
+        --ignore=README.md --ignore=LICENSE 
     stow -v -t $HOME $folder
 done
 
