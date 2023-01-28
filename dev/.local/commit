@@ -22,4 +22,6 @@ fi
 
 gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$DESCRIPTION"
 
+GIT_URL=$(git config --get remote.origin.url)
+gum confirm "Push to remote? ${GIT_URL}" && git push origin
 
