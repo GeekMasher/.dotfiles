@@ -20,7 +20,7 @@ if [ -z "$(git status -s -uno | grep -v '^ ' | awk '{print $2}')" ]; then
     gum confirm "No staged files. Commit all?" && git add .
 fi
 
-gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$DESCRIPTION"
+gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$DESCRIPTION" &> /dev/null
 
 GIT_URL=$(git config --get remote.origin.url)
 gum confirm "Push to remote? ${GIT_URL}" && git push origin
