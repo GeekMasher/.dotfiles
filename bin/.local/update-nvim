@@ -8,15 +8,17 @@ get_latest_release() {
 
 DOWNLOAD_URL=$(get_latest_release)
 
-echo "Download URL :: $DOWNLOAD_URL"
 
-mv ~/.local/nvim ~/.local/nvim.old
+if [ -f ~/.local/nvim ]; then
+    echo "[!] Backing up old nvim file, just in case"
+    mv ~/.local/nvim ~/.local/nvim.old
+fi 
+
+echo "[+] Download URL :: $DOWNLOAD_URL"
 curl -L -o ~/.local/nvim $DOWNLOAD_URL 2> /dev/null
 
 chmod +x ~/.local/nvim
 
+echo "Successfully installed Neovim Appimage"
 echo "$(nvim --version | head -n 1)"
-
-echo "Finish..."
-
 
