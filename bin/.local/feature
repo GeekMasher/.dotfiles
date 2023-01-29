@@ -1,0 +1,27 @@
+#!/bin/bash
+# This makes new features is awesome!
+
+set -e
+
+if ! command -v gum &> /dev/null; then
+    echo "[!] Gum is not installed, please install the tool"
+    echo " > https://github.com/charmbracelet/gum"
+    exit 1
+fi
+
+gum spin --spinner dot --title 'Creating a new feature!' sleep 1
+
+TYPE=$(gum choose "fix" "feature" "docs" "style" "refactor" "test" "chore" "revert")
+NAME=$(gum input --placeholder "Feature name")
+
+# TODO: encode name as someone might include `/_- `
+BRANCH="$TYPE/$NAME"
+
+git checkout -B $BRANCH
+
+gum style \
+    --foreground 212 --border-foreground 212 --border double \
+    --border-foreground="#8ac149" --foreground="#8ac149" \
+    --align center --width 50 --margin "1 2" --padding "2 4" \
+    'Keep on building amazing new features and fixing bugs!'
+
