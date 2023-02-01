@@ -23,16 +23,14 @@ dot() {
 # Languages
 
 ## Python
-if [ -x "$(command -v python)" ]; then
-    alias python="python3"
-    alias freeze="pip freeze > requirements.txt"
-    alias pyinstall="python ./setup.py install"
-    alias pycompile="python -O -m compileall ./"
+alias python="python3"
+alias pyfreeze="pip freeze > requirements.txt"
+alias pyinstall="python ./setup.py install"
+alias pycompile="python -O -m compileall ./"
 
-    if [ -d $HOME/.local/bin ]; then
-        PYTHON_PATH_LOCAL=$(echo $HOME/.local/lib/*/site-packages)
-        PATH="$PATH:$PYTHON_PATH_LOCAL"
-    fi
+if [ -d $HOME/.local/bin ]; then
+    PYTHON_PATH_LOCAL=$(echo $HOME/.local/lib/*/site-packages)
+    PATH="$PATH:$PYTHON_PATH_LOCAL"
 fi
 
 ## Rust
