@@ -4,7 +4,7 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PRESENT=false
 
-DOT_FOLDERS="bin,tmux,nvim,zsh,dev,geek,misc"
+DOT_FOLDERS="bin,assets,tmux,nvim,zsh,dev,geek,misc"
 
 # parse other arguments
 for i in "$@"; do
