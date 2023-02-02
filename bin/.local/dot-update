@@ -11,6 +11,7 @@ pushd $DOT_FOLDER &>/dev/null
 echo "[+] Updating dotfiles :: $DOT_FOLDER"
 
 git pull origin main
+git submodule update --init --recursive
 git submodule update --remote
 
 popd
