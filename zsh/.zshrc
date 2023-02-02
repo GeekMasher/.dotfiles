@@ -48,7 +48,9 @@ fi
 
 # Run neofetch if present on machine
 if [ -x "$(command -v neofetch)" ]; then
-    echo ""
-    neofetch
+    neofetch \
+        --jp2a ~/.config/geekmasher/geekmasher-logo.png \
+        --size 400 \
+        --crop_mode fix
 fi
 
