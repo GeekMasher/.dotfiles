@@ -21,7 +21,7 @@ for i in "$@"; do
         ;;
     -w|--work)
         echo "Enabling Work mode..."
-        DOT_FOLDERS="$DOT_FOLDERS,github,vscode"
+        DOT_FOLDERS="$DOT_FOLDERS,codeql,github,vscode"
         shift
         ;;
     -*|--*)
