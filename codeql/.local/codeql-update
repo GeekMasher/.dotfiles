@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if ! command -v gh &> /dev/null; then 
+    echo "[!] GitHub CLI needs to be installed..."
+    echo "[!] Try https://github.com/cli/cli/blob/trunk/docs/install_linux.md"
+    exit 1
+fi 
+
+gh extensions install github/gh-codeql
+gh extensions install advanced-security/gh-codeql-scan
+gh codeql set-version latest
+
+# remove old packs
+rm -rf ~/.codeql/packages/codeql/
+
+# install new packs for each language
+LANGS="cpp,csharp,go,java,javascript,python"
+for lang in $(echo $LANGS | sed "s/,/ /g"); do
+    gh codeql pack download "codeql/$lang-queries"
+done
+
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+ARGS=$@
+TEST_PATH="${ARGS:=$PWD/tests}"
+CODEQL_QUERIES="${CODEQL_QUERIES:=./}"
+
+codeql test run --additional-packs=$CODEQL_QUERIES --additional-packs=$CODEQL_QUERIES/codeql $@
+

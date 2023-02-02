@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if ! command -v gh codeql &> /dev/null; then 
+    $SCRIPT_DIR/codeql-update
+fi 
+
+gh codeql $@
+
