@@ -1,10 +1,8 @@
 return {
     -- https://github.com/folke/tokyonight.nvim
+    -- https://github.com/gruvbox-community/gruvbox 
     {
         "folke/tokyonight.nvim",
-        dependencies = {
-            "flazz/vim-colorschemes",
-        },
         config = function()
             require("tokyonight").setup({
                 style = "storm",
@@ -19,6 +17,7 @@ return {
             vim.cmd("colorscheme tokyonight-storm")
         end
     },
+    "flazz/vim-colorschemes",
     {
         "kyazdani42/nvim-web-devicons",
         dependencies = {
