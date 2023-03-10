@@ -47,10 +47,7 @@ if [ -d ~/.geek ]; then
 fi
 
 # Run neofetch if present on machine
-if [ -x "$(command -v neofetch)" ]; then
-    neofetch \
-        --jp2a ~/.config/geekmasher/geekmasher-logo.png \
-        --size 400 \
-        --crop_mode fix
+if [ ! -z ${NEOFETCH+x} ] && [ -x "$(command -v neofetch)" ]; then
+    neofetch
 fi
 
