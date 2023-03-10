@@ -14,6 +14,10 @@ for i in "$@"; do
         DOT_FOLDERS="$DOT_FOLDERS,personal"
         shift
         ;;
+    -c|--code-review|--security)
+        echo "Enabling Code Review mode..."
+        DOT_FOLDERS="$DOT_FOLDERS,codeql"
+        ;;
     -s|--server)
         echo "Enabling Server mode..."
         DOT_FOLDERS="$DOT_FOLDERS"
