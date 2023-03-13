@@ -16,7 +16,7 @@ for i in "$@"; do
         ;;
     -c|--code-review|--security)
         echo "Enabling Code Review mode..."
-        DOT_FOLDERS="$DOT_FOLDERS,codeql"
+        DOT_FOLDERS="$DOT_FOLDERS,security"
         ;;
     -s|--server)
         echo "Enabling Server mode..."
