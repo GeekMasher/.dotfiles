@@ -36,6 +36,8 @@ return {
             max_path_depth = nil,
           },
           panel = {
+            width = 100,
+            pos = "botright",
             group_by = "sink", -- "source"
             show_filename = true,
             long_filename = false,
