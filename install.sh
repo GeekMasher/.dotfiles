@@ -48,7 +48,7 @@ for folder in $(echo $DOT_FOLDERS | sed "s/,/ /g"); do
 
     stow -t $HOME -D $folder \
         --ignore=README.md --ignore=LICENSE 
-    stow -v -t $HOME $folder
+    stow -t $HOME $folder
 done
 
 # Look for DOT_FOLDER in the .env
