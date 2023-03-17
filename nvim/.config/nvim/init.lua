@@ -108,6 +108,8 @@ vim.keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
 vim.keymap.set('n', '<leader>gw', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>')
 
 vim.keymap.set('n', '<leader>o', vim.diagnostic.open_float, opts)
+-- Expand Rust Macros
+vim.keymap.set('n', '<leader>ge', '<cmd>lua require"rust-tools".expand_macro.expand_macro()<cr>')
 
 -- Running Code
 -- TODO: Redo this using Nvim plugin
