@@ -14,7 +14,7 @@ gh codeql set-version latest
 rm -rf ~/.codeql/packages/codeql/
 
 # install new packs for each language
-LANGS="cpp,csharp,go,java,javascript,python"
+LANGS="cpp,csharp,go,java,javascript,python,ruby"
 for lang in $(echo $LANGS | sed "s/,/ /g"); do
     gh codeql pack download "codeql/$lang-queries"
 done
