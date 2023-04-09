@@ -1,0 +1,19 @@
+#!/bin/bash 
+
+set -e
+
+WORKSPACE="$PWD"
+
+function info() {
+    echo "[+] $@"
+}
+
+info "Scanning $PWD"
+
+# SCA 
+if [ -f "$WORKSPACE/Cargo.toml" ]; then 
+    info "Found Cargo (Rust) codebase"
+    cargo audit
+fi
+
+
