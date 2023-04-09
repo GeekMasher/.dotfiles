@@ -8,7 +8,7 @@ function info() {
     echo "[+] $@"
 }
 
-info "Scanning $PWD"
+info "Running audit..."
 
 # SCA 
 if [ -f "$WORKSPACE/Cargo.toml" ]; then 
