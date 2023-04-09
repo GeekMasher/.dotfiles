@@ -9,6 +9,11 @@ DOT_FOLDERS="bin,assets,tmux,nvim,zsh,dev,geek,misc"
 # parse other arguments
 for i in "$@"; do
   case $i in
+    -ai)
+        echo "Enabling AI powers..."
+        DOT_FOLDERS="$DOT_FOLDERS,ai"
+        shift
+        ;;
     -p|--personal)
         echo "Enabling Personal mode..."
         DOT_FOLDERS="$DOT_FOLDERS,personal"
