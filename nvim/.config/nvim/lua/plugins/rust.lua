@@ -49,7 +49,6 @@ return {
             require("crates").setup {
                 smart_insert = true,
                 autoupdate = false,
-                show_version_date = true,
                 text = {
                     loading = " Loading...",
                     version = " %s",
