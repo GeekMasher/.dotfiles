@@ -17,10 +17,9 @@ if [[ $# -gt 0 ]]; then
     $CODEQL_SUMMARIZE/codeql-summarize $@
 else 
     REPO=$(gum input --placeholder "Repository (owner/repo)")
-    NAME=(${REPO//\//_})
-    echo "Name :: ${NAME[1]}"
+    echo "Repository :: ${REPO}"
 
     LANG=$(gum choose "cpp" "csharp" "java" "javascript" "go" "python" "ruby")
 
-    $CODEQL_SUMMARIZE/codeql-summarize -l $LANG -r $NAME
+    $CODEQL_SUMMARIZE/codeql-summarize -l $LANG -r $REPO
 fi
