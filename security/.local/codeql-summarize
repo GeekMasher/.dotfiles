@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 export CODEQL_SUMMARIZE=${CODEQL_SUMMARIZE:=$HOME/.codeql/summarize}
 
 if [[ ! -d $CODEQL_SUMMARIZE ]]; then
@@ -10,5 +12,15 @@ if [[ ! -d $CODEQL_SUMMARIZE ]]; then
         $CODEQL_SUMMARIZE
 fi
 
-$CODEQL_SUMMARIZE/codeql-summarize $@
+# if any arguments are passed, pass them to codeql-summarize
+if [[ $# -gt 0 ]]; then
+    $CODEQL_SUMMARIZE/codeql-summarize $@
+else 
+    REPO=$(gum input --placeholder "Repository (owner/repo)")
+    NAME=(${REPO//\//_})
+    echo "Name :: ${NAME[1]}"
 
+    LANG=$(gum choose "cpp" "csharp" "java" "javascript" "go" "python" "ruby")
+
+    $CODEQL_SUMMARIZE/codeql-summarize -l $LANG -r $NAME
+fi
