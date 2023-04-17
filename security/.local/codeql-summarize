@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export CODEQL_SUMMARIZE=${CODEQL_SUMMARIZE:=$HOME/.codeql/summarize}
+
+if [[ ! -d $CODEQL_SUMMARIZE ]]; then
+    echo "[!] CodeQL Summarize isn't installed... Cloning now"
+    mkdir -p $CODEQL_SUMMARIZE
+    git clone \
+        https://github.com/advanced-security/codeql-summarize \
+        $CODEQL_SUMMARIZE
+fi
+
+$CODEQL_SUMMARIZE/codeql-summarize
+
