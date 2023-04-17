@@ -10,5 +10,5 @@ if [[ ! -d $CODEQL_SUMMARIZE ]]; then
         $CODEQL_SUMMARIZE
 fi
 
-$CODEQL_SUMMARIZE/codeql-summarize
+$CODEQL_SUMMARIZE/codeql-summarize $@
 
