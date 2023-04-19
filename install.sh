@@ -2,13 +2,24 @@
 
 set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+INSTALL_JSON=$SCRIPT_DIR/install.json
 PRESENT=false
 
 DOT_FOLDERS="bin,assets,tmux,nvim,zsh,dev,geek,misc"
 
+
 # parse other arguments
 for i in "$@"; do
   case $i in
+    -i|--interactive)
+        # interactive using GUM
+        DOT_FOLDERS="bin,assets,misc"
+        SELECTED=$(cat $INSTALL_JSON | jq -r 'keys_unsorted[]' | gum choose --limit 10)
+        for choice in $(echo $SELECTED | sed "s/,/ /g"); do
+            DOT_FOLDERS="$DOT_FOLDERS,$(cat $INSTALL_JSON | jq -r ".$choice")"
+        done
+        shift
+        ;;
     -ai)
         echo "Enabling AI powers..."
         DOT_FOLDERS="$DOT_FOLDERS,ai"

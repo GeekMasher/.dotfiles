@@ -1,0 +1,11 @@
+{
+    "Geek": "geek",
+    "Nvim": "nvim",
+    "ZSH": "zsh",
+    "Tmux": "tmux",
+    "Development": "dev",
+    "Security": "security",
+    "Personal": "personal",
+    "Work": "github",
+    "AI": "ai"
+}
