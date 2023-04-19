@@ -3,6 +3,7 @@
 set -e
 
 export CODEQL_SUMMARIZE=${CODEQL_SUMMARIZE:=$HOME/.codeql/summarize}
+export CODEQL_SUMMARIZE_REMOTE="advanced-security/codeql-queries"
 
 if [[ ! -d $CODEQL_SUMMARIZE ]]; then
     echo "[!] CodeQL Summarize isn't installed... Cloning now"
@@ -13,21 +14,31 @@ if [[ ! -d $CODEQL_SUMMARIZE ]]; then
 fi
 
 if [[ $1 == "update" ]]; then 
+    # update local version
     echo "[+] Updating CodeQL Summarize"
     pushd $CODEQL_SUMMARIZE
     git pull origin main
     popd
-    exit 0
-fi
 
-# if any arguments are passed, pass them to codeql-summarize
-if [[ $# -gt 0 ]]; then
+elif [[ $1 == "remote" ]]; then 
+    # interactive remote summaries
+    REPO=$(gum input --placeholder "Repository (owner/repo)")
+    LANG=$(gum choose "csharp" "java") 
+
+    gh -R $CODEQL_SUMMARIZE_REMOTE \
+        workflow run extensions-manual.yml \
+        -f "repository=$REPO" \
+        -f "language=$LANG"
+
+elif [[ $# -gt 0 ]]; then
+    # if any arguments are passed, pass them to codeql-summarize
     $CODEQL_SUMMARIZE/codeql-summarize $@
 else 
     REPO=$(gum input --placeholder "Repository (owner/repo)")
-    echo "Repository :: ${REPO}"
-
     LANG=$(gum choose "cpp" "csharp" "java" "javascript" "go" "python" "ruby")
 
     $CODEQL_SUMMARIZE/codeql-summarize -l $LANG -r $REPO
 fi
+
+echo "[+] Completed!"
+
