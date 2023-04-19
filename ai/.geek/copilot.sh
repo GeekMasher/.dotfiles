@@ -1,3 +1,7 @@
 
 # Load the Copilot CLI
-eval "$(github-copilot-cli alias -- "$0")"
+# if the github-copilot-cli exists
+if [[ -x "$(command -v github-copilot-cli)" ]]; then
+  eval "$(github-copilot-cli init -- "$0")"
+fi
+
