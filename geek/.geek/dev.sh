@@ -13,6 +13,13 @@ edit() {
 }
 
 dot() {
+    # if dev present, run dev command
+    # dev -q dotfiles
+    if [ -x "$(command -v dev)" ]; then 
+        dev -q dotfiles
+        exit 0
+    fi
+
     if [ -x "$(command -v figlet)" ] && [ -x "$(command -v lolcat)" ]; then
         # Only pretty print if both `figlet` and `lolcat` is present
         figlet -w 500 -f slant "Dotfiles" | lolcat
