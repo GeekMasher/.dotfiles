@@ -4,6 +4,8 @@ set -e
 
 export CODEQL_SUMMARIZE=${CODEQL_SUMMARIZE:=$HOME/.codeql/summarize}
 export CODEQL_SUMMARIZE_REMOTE="advanced-security/codeql-queries"
+export CODEQL_SUMMARIZE_LANGUAGES="csharp java"
+
 
 if [[ ! -d $CODEQL_SUMMARIZE ]]; then
     echo "[!] CodeQL Summarize isn't installed... Cloning now"
@@ -20,10 +22,14 @@ if [[ $1 == "update" ]]; then
     git pull origin main
     popd
 
-elif [[ $1 == "remote" ]]; then 
+elif [[ $1 == "remote" ]]; then
     # interactive remote summaries
     REPO=$(gum input --placeholder "Repository (owner/repo)")
-    LANG=$(gum choose "csharp" "java") 
+    # automatically detect language
+    LANG=$(gh api repos/${REPO}/languages -q '[{"C#":"csharp", "Java":"java",}[keys[]]] | unique -[null]' | tr -d '"[]')
+    # LANG=$(gum choose "csharp" "java")
+
+    echo "[+] Running CodeQL Summarize for $REPO ($LANG)"
 
     gh -R $CODEQL_SUMMARIZE_REMOTE \
         workflow run extensions-manual.yml \
@@ -41,4 +47,3 @@ else
 fi
 
 echo "[+] Completed!"
-
