@@ -11,6 +11,8 @@ function get_ignore_files()
     local files = {
         ".git/",
         ".vscode/",
+        -- General Coding folders
+        "bin/"
         -- JS / Node
         "node_modules/",
         -- Python 
