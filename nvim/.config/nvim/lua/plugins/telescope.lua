@@ -12,7 +12,7 @@ function get_ignore_files()
         ".git/",
         ".vscode/",
         -- General Coding folders
-        "bin/"
+        "bin/",
         -- JS / Node
         "node_modules/",
         -- Python 

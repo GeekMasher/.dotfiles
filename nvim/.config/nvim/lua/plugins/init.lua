@@ -8,6 +8,7 @@ return {
             require("gitsigns").setup {}
         end
     },
+    "nvim-lua/plenary.nvim",
     "folke/neodev.nvim",
     -- Trouble
     {
