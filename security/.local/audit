@@ -14,6 +14,8 @@ info "Running audit..."
 if [ -f "$WORKSPACE/Cargo.toml" ]; then 
     info "Found Cargo (Rust) codebase"
     cargo audit
+elif [ -f "$WORKSPACE/Pipfile" ]; then 
+    pipenv check
 fi
 
 
