@@ -111,17 +111,21 @@ vim.keymap.set('n', '<leader>o', vim.diagnostic.open_float, opts)
 -- Expand Rust Macros
 vim.keymap.set('n', '<leader>ge', '<cmd>lua require"rust-tools".expand_macro.expand_macro()<cr>')
 
--- Running Code
--- TODO: Redo this using Nvim plugin
-vim.keymap.set('n', '<F5>', '<cmd>!geek-code --main<cr>')
-vim.keymap.set('n', '<F10>', '<cmd>!geek-code --test<cr>')
-
 -- Lazy man's saving...
 vim.keymap.set('n', '<C-s>', '<cmd>:w<cr>')
 
 -- Reselect the visual selections
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+-- On Save run formatter
+local formatters = vim.api.nvim_create_augroup("formatters", { clear = true })
+vim.api.nvim_create_autocmd({"BufWritePre", "BufEnter"}, {
+    group = formatters,
+    callback = function ()
+        vim.lsp.buf.format()
+    end
+})
 
 -- Telescope
 local telescope = require('telescope')

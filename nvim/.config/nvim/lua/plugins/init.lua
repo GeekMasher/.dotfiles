@@ -1,11 +1,16 @@
 return {
     -- Status Line
-    "nvim-lualine/lualine.nvim",
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+    },
     -- Git
     {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require("gitsigns").setup {}
+            require("gitsigns").setup({})
         end
     },
     "nvim-lua/plenary.nvim",
