@@ -2,14 +2,14 @@
 -- Install Lazy if not present on the system
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
 
 vim.opt.rtp:prepend(lazypath)
@@ -83,7 +83,7 @@ vim.opt.wildignore:append {
     '**/android/*'
 }
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 
 -- Increment/decrement
 vim.keymap.set('n', '+', '<C-a>')
@@ -120,9 +120,9 @@ vim.keymap.set('v', '>', '>gv')
 
 -- On Save run formatter
 local formatters = vim.api.nvim_create_augroup("formatters", { clear = true })
-vim.api.nvim_create_autocmd({"BufWritePre", "BufEnter"}, {
+vim.api.nvim_create_autocmd({ "BufWritePre", "BufEnter" }, {
     group = formatters,
-    callback = function ()
+    callback = function()
         vim.lsp.buf.format()
     end
 })
@@ -157,4 +157,3 @@ vim.keymap.set(
 -- Trouble
 vim.keymap.set("n", "<F11>", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
 -- vim.keymap.set("n", "<leader>tf", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-

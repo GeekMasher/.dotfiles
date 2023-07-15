@@ -6,7 +6,7 @@ return {
     {
         "simrat39/rust-tools.nvim",
         config = function()
-            require("rust-tools").setup{
+            require("rust-tools").setup({
                 tools = {
                     autoSetHints = true,
                     runnables = {
@@ -40,7 +40,7 @@ return {
                         }
                     }
                 }
-            }
+            })
         end
     },
     {
@@ -62,4 +62,3 @@ return {
         end
     }
 }
-
