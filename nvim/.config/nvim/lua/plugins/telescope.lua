@@ -1,12 +1,12 @@
 local open = io.open
 
-function file_exists(file)
+local function file_exists(file)
     local f = io.open(file, "rb")
     if f then f:close() end
     return f ~= nil
 end
 
-function get_ignore_files()
+local function get_ignore_files()
     local files = {
         ".git/",
         ".vscode/",
