@@ -5,6 +5,7 @@ return {
     -- https://sharksforarms.dev/posts/neovim-rust/
     {
         "simrat39/rust-tools.nvim",
+        event = "VeryLazy",
         config = function()
             require("rust-tools").setup({
                 tools = {
@@ -45,6 +46,7 @@ return {
     },
     {
         "saecki/crates.nvim",
+        event = "VeryLazy",
         config = function()
             require("crates").setup {
                 smart_insert = true,

@@ -27,6 +27,10 @@ return {
             }
         end
     },
+    {
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
+    },
     -- Comment
     {
         "numToStr/Comment.nvim",

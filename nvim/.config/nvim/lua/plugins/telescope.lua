@@ -1,10 +1,9 @@
-
 local open = io.open
 
 function file_exists(file)
-  local f = io.open(file, "rb")
-  if f then f:close() end
-  return f ~= nil
+    local f = io.open(file, "rb")
+    if f then f:close() end
+    return f ~= nil
 end
 
 function get_ignore_files()
@@ -15,7 +14,7 @@ function get_ignore_files()
         "bin/",
         -- JS / Node
         "node_modules/",
-        -- Python 
+        -- Python
         ".pyc", ".venv/",
         -- Rust
         "target/", "Cargo.lock"
@@ -25,7 +24,7 @@ function get_ignore_files()
     if not file_exists(file) then return files end
     for line in io.lines(file) do
         if line == nil or line == '' then
-            line=""
+            line = ""
         else
             files[#files + 1] = line
         end
@@ -33,10 +32,10 @@ function get_ignore_files()
     return files
 end
 
-
 return {
     {
         "nvim-telescope/telescope.nvim",
+        event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
@@ -52,7 +51,7 @@ return {
             telescope.setup {
                 defaults = {
                     file_sorter = sorters.get_fzy_sorter,
-                    
+
                     prompt_prefix = "🔍 ",
                     hidden = true,
                     color_devicons = true,
@@ -77,7 +76,7 @@ return {
                         i = {
                             ['<C-x>'] = false,
                             ['<C-q>'] = actions.close
-                        }, 
+                        },
                     },
                 },
                 extensions = {

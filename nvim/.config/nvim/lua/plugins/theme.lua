@@ -1,6 +1,6 @@
 return {
     -- https://github.com/folke/tokyonight.nvim
-    -- https://github.com/gruvbox-community/gruvbox 
+    -- https://github.com/gruvbox-community/gruvbox
     {
         "folke/tokyonight.nvim",
         config = function()
@@ -25,8 +25,8 @@ return {
         },
         config = function()
             require("nvim-web-devicons").setup {
-                override = {};
-                default = true;
+                override = {},
+                default = true,
             }
         end
     },

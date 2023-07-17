@@ -10,29 +10,29 @@ return {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify"
         },
-        config = function ()
+        config = function()
             require("noice").setup {
                 popupmenu = { enabled = true },
                 messages = { enabled = true },
                 notify = { enabled = false },
                 -- Popup vim cmd
                 cmdline = {
-                  enabled = true,
-                  view = "cmdline_popup",
-                  view_search = "cmdline_popup_search",
-                  opts = { buf_options = { filetype = "vim" } },
-                  icons = {
-                    ["?"] = { icon = " ", hl_group = "NoiceCmdlineIconSearch" },
-                    [":"] = { icon = " ", hl_group = "NoiceCmdlineIcon", firstc = false },
-                  },
+                    enabled = true,
+                    view = "cmdline_popup",
+                    view_search = "cmdline_popup_search",
+                    opts = { buf_options = { filetype = "vim" } },
+                    icons = {
+                        ["?"] = { icon = " ", hl_group = "NoiceCmdlineIconSearch" },
+                        [":"] = { icon = " ", hl_group = "NoiceCmdlineIcon", firstc = false },
+                    },
                 },
                 -- LSP Things
                 lsp_progress = { enabled = false },
                 lsp = {
                     override = {
-                      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                      ["vim.lsp.util.stylize_markdown"] = true,
-                      ["cmp.entry.get_documentation"] = true,
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
                     },
                 },
                 presents = {
@@ -42,41 +42,41 @@ return {
                 },
                 -- Custom Views
                 views = {
-                  mini = {
-                    position = {
-                      row = -2
-                    }
-                  },
-                  cmdline_popup = {
-                    -- https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup
-                    position = {
-                      --row = "30%",
-                      row = 15,
-                      col = "50%",
+                    mini = {
+                        position = {
+                            row = -2
+                        }
                     },
-                    size = {
-                      width = 148,
-                      height = "auto",
+                    cmdline_popup = {
+                        -- https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup
+                        position = {
+                            --row = "30%",
+                            row = 15,
+                            col = "50%",
+                        },
+                        size = {
+                            width = 148,
+                            height = "auto",
+                        },
                     },
-                  },
-                  popupmenu = {
-                    relative = "editor",
-                    position = {
-                      row = 18,
-                      col = "50%",
+                    popupmenu = {
+                        relative = "editor",
+                        position = {
+                            row = 18,
+                            col = "50%",
+                        },
+                        size = {
+                            width = 80,
+                            height = 5,
+                        },
+                        border = {
+                            style = "rounded",
+                            padding = { 0, 1 },
+                        },
+                        win_options = {
+                            winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+                        },
                     },
-                    size = {
-                      width = 80,
-                      height = 5,
-                    },
-                    border = {
-                      style = "rounded",
-                      padding = { 0, 1 },
-                    },
-                    win_options = {
-                      winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-                    },
-                  },
                 }
             }
         end
