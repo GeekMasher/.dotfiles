@@ -38,6 +38,7 @@ return {
                     null_ls.builtins.diagnostics.dotenv_linter,
                     null_ls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
                     null_ls.builtins.diagnostics.markdownlint,
+                    null_ls.builtins.diagnostics.rstcheck,
                     null_ls.builtins.formatting.dprint,
                     -- null_ls.builtins.completion.spell,
                     -- Actions
