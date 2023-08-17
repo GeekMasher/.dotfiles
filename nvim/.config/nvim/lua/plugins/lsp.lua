@@ -89,8 +89,6 @@ return {
                     -- Tab support
                     ["<Tab>"] = nil,
                     ["<S-Tab>"] = nil,
-                    -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-                    -- ['<Tab>'] = cmp.mapping.select_next_item(),
                     -- docs
                     ["<C-j>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-k>"] = cmp.mapping.scroll_docs(4),
