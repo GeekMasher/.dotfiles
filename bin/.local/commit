@@ -9,16 +9,16 @@ if ! command -v gum &> /dev/null; then
     exit 1
 fi
 
-gum spin --spinner dot --title 'Checking and Commiting your Code!' sleep 1
-
+# security
 if ! command -v audit &> /dev/null; then
-    echo "[!] Audit tool is not present, please install / use an audit tool"
     if [ -z ${AUDIT_REQUIRED+x} ]; then 
+        echo "[!] Audit tool is not present, please install / use an audit tool"
         exit 1
     fi
-    echo "[!] Skipping this part"
+    echo "[!] Skipping audit"
+    gum spin --spinner dot --title 'Checking and Commiting your Code!' sleep 1
 else
-    audit
+    gum spin --spinner dot --title 'Running audit script...' audit
     echo "[+] No security issues found"
 fi
 
