@@ -3,6 +3,7 @@ return {
     -- https://github.com/gruvbox-community/gruvbox
     {
         "folke/tokyonight.nvim",
+        priority = 100,
         config = function()
             require("tokyonight").setup({
                 style = "storm",
