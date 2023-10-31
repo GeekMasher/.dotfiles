@@ -21,7 +21,7 @@ return {
                 icons = true,
                 height = 15,
                 mode = "document_diagnostics",
-                auto_open = true,
+                -- auto_open = true,
                 auto_close = true,
                 action_keys = {
                     close = "q",
