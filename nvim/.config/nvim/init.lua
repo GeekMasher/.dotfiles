@@ -103,6 +103,7 @@ vim.keymap.set('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>')
 vim.keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
 vim.keymap.set('n', '<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 vim.keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+-- vim.keymap.set('n', '<leader>gn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
 vim.keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
 vim.keymap.set('n', '<leader>gw', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>')
