@@ -3,5 +3,19 @@ ARGS=$@
 TEST_PATH="${ARGS:=$PWD/tests}"
 CODEQL_QUERIES="${CODEQL_QUERIES:=./}"
 
-codeql test run --additional-packs=$CODEQL_QUERIES --additional-packs=$CODEQL_QUERIES/codeql $@
+SEARCH_PATH=""
+
+# check for `extractor-pack` in the current working directory
+if [ -d "$PWD/extractor-pack" ]; then
+    echo "Found extractor-pack in working directory"
+    SEARCH_PATH="$PWD/extractor-pack"   
+fi
+
+codeql test run \
+    --threads 8 \
+    --search-path="$SEARCH_PATH" \
+    --check-databases --check-undefined-labels --check-unused-labels --check-repeated-labels --check-redefined-labels --check-use-before-definition \
+    --additional-packs=$CODEQL_QUERIES \
+    --additional-packs=$CODEQL_QUERIES/codeql \
+    $@
 
