@@ -1,11 +1,14 @@
-local open = io.open
-
+--- Check if a file or directory exists in this path
+---@param file any
+---@return boolean
 local function file_exists(file)
     local f = io.open(file, "rb")
     if f then f:close() end
     return f ~= nil
 end
 
+--- Get the ignore files from .vimignore
+---@return table
 local function get_ignore_files()
     local files = {
         ".git/",
@@ -43,7 +46,6 @@ return {
         },
         config = function()
             local actions = require('telescope.actions')
-            local builtin = require('telescope.builtin')
             local sorters = require('telescope.sorters')
             local previewers = require("telescope.previewers")
 
