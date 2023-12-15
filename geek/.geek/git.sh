@@ -2,30 +2,19 @@
 ## Git
 
 alias clone="git clone --recursive $@"
-alias branch="git checkout -b $@"
+alias clone-lite="git clone --recursive --depth 1 $@"
 alias status="git status"
 
-function worktree() {
-    echo "Enabling git worktree..."
-    alias clone="git clone --bare $@"
-    alias branch="git worktree add $@"
-}
-
-
-alias gitp="git push"
-alias gitc="git commit"
-alias gita="git add $@"
-
-alias main="git checkout main"
-alias develop="git checkout develop"
-
-function git.ignore() {
-    # This function creates a `.gitignore` file using gitignore.io
-    if [ $# -eq 0 ]; then
-        echo "No arguments supplied"
+# Change branch or create new branch
+function branch() {
+    if git rev-parse --verify --quiet refs/heads/$1; then
+        git checkout $1
+        git pull origin $1
     else
-        echo "Using gitignore.io ..."
-        LANGS=$@
-        curl -L -s https://www.gitignore.io/api/${LANGS// /,} > ./.gitignore
+        git checkout -b $1
     fi
 }
+
+alias main="branch main"
+alias develop="branch develop"
+
