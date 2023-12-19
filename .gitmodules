@@ -4,3 +4,6 @@
 [submodule "personal"]
 	path = personal
 	url = git@github.com:GeekMasher/.dotfiles-personal.git
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = git@github.com:GeekMasher/nvim.git
