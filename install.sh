@@ -20,11 +20,6 @@ for i in "$@"; do
         done
         shift
         ;;
-    -ai)
-        echo "Enabling AI powers..."
-        DOT_FOLDERS="$DOT_FOLDERS,ai"
-        shift
-        ;;
     -p|--personal)
         echo "Enabling Personal mode..."
         DOT_FOLDERS="$DOT_FOLDERS,personal"
