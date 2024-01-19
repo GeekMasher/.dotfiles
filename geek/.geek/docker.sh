@@ -6,7 +6,7 @@ docker.nuke() {
     sudo docker stop 
     sudo docker image prune -f
     sudo docker container prune -f
-    sudo docker volumn prune -f    
+    sudo docker volume prune -f    
 }
 
 function docker-compose-start-all() {

@@ -62,10 +62,8 @@ alias watch.dir="watch --color ls --color -las"
 alias now='date +"%T"'
 alias reload="exec $SHELL -l"
 alias count.files="ls -l $1 | grep -v ^l | wc -l"
-alias edit="nvim"
-alias svim="sude vim $*"
+
 alias top='htop'
-alias rename="mv $1 $2"
 alias chmox="chmod -x $@"
 
 

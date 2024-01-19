@@ -19,7 +19,6 @@ update() {
         sudo apt upgrade -y
     elif [[ "$machine" == "Darwin" ]]; then
         brew update
-        brew upgrade
     else
         echo "Unknown OS: $machine"
     fi
@@ -32,8 +31,9 @@ upgrade() {
         sudo apt autoremove -y 
         sudo apt clear -y
     elif [[ "$machine" == "Darwin" ]]; then
-        # Open App Store
-        open -a "App Store"
+        brew update 
+        brew upgrade 
+        brew cleanup
     else
         echo "Unknown OS: $machine"
     fi

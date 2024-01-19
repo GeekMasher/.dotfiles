@@ -4,7 +4,7 @@
 alias vpn="sudo /usr/sbin/openvpn && ip.dns"
 
 # server commands
-alias sconnect="ssh $@ -t 'tmux a -t main || tmux new -s main'"
+alias connect="ssh $@ -t 'tmux a -t main || tmux new -s main'"
 
 smount(){
     if [ ! -d $1 ]; then; mkdir -p $1; fi
@@ -16,11 +16,3 @@ sumount() {
     umount $@
 }
 
-# Virtiual machines
-if [ -x /usr/bin/vboxmanage ]; then
-    alias vm="vboxmanage --startvm $@"
-    alias vm.headless="vboxheadless --startvm $@"
-    alias vm.create="vboxmanage createvm --register --name $@"
-    alias vm.rm="vboxmanage unregistervm $@"
-    alias vm.list="vboxmanage list vms"
-fi
