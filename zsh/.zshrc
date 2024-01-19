@@ -14,9 +14,12 @@ ZSH_THEME="geekmasher"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
+  1password
   git
   docker
   kubectl
+  macos
+  shrink-path
   tmux
   python
   rust

@@ -1,4 +1,4 @@
-
+#!/bin/bash
 CURRENT_BG='NONE'
 
 case ${SOLARIZED_THEME:-dark} in
@@ -170,7 +170,9 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue $CURRENT_FG '%~'
+  setopt prompt_subst
+  prompt_segment blue $CURRENT_FG "$(shrink_path -f)"
+  # '%~'
 }
 
 # Virtualenv: current working virtualenv
@@ -194,25 +196,11 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
-#AWS Profile:
-# - display current AWS_PROFILE name
-# - displays yellow on red if profile name contains 'production' or
-#   ends in '-prod'
-# - displays black on green otherwise
-prompt_aws() {
-  [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
-  case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment red yellow  "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-    *) prompt_segment green black "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-  esac
-}
-
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
-  prompt_aws
   prompt_context
   prompt_dir
   prompt_git
