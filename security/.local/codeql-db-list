@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# get script directory
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+python3 $SCRIPT_DIR/codeql-db-list.py $@
+
