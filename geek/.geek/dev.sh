@@ -27,6 +27,13 @@ dot() {
     cd $DOT_FOLDER
 }
 
+# Tools
+
+## Mason (nvim) installed tools / binaries
+if [ -d $HOME/.local/share/nvim/mason/bin ]; then
+    PATH=$PATH:$HOME/.local/share/nvim/mason/bin
+fi
+
 # Languages
 
 ## Python
@@ -34,6 +41,10 @@ alias python="python3"
 alias pyfreeze="pip freeze > requirements.txt"
 alias pyinstall="python ./setup.py install"
 alias pycompile="python -O -m compileall ./"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 ## Rust
 if [ -d $HOME/.cargo ]; then
