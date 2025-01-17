@@ -34,7 +34,6 @@ else
 fi
 
 export ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
-export EDITOR=nvim
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="geekmasher"
@@ -59,7 +58,7 @@ if [ -d $HOME/.geek ]; then
     done
 fi
 
-# Run neofetch if present on machine
+# Run fastfetch if present on machine
 if [ -x "$(command -v fastfetch)" ]; then
     fastfetch
 fi
