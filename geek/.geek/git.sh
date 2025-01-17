@@ -9,13 +9,13 @@ alias push="git push"
 
 # Change branch or create new branch
 function branch() {
-    if git rev-parse --verify --quiet refs/heads/$1; then
-        git checkout $1
-        git pull origin $1
+    if git rev-parse --verify --quiet "refs/heads/$1"; then
+        git checkout "$1"
+        git pull origin "$1"
     else
-        git checkout -b $1
+        git checkout -b "$1"
     fi
-    git push --set-upstream origin $1
+    git push --set-upstream origin "$1"
 }
 
 alias main="branch main"
