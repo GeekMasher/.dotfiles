@@ -51,7 +51,8 @@ done
 echo "[+] Dotfiles :: $SCRIPT_DIR"
 
 if ! command -v stow &> /dev/null; then
-    sudo apt install -y stow
+    echo "The 'stow' package is required"
+    exit 1
 fi
 
 for folder in $(echo $DOT_FOLDERS | sed "s/,/ /g"); do
