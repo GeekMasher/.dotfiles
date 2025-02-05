@@ -1,9 +1,0 @@
-{
-    "recommendations": [
-        "ms-python",
-        "ms-python.vscode-pylanc",
-        "github.vscode-codeql",
-        "ms-sarifvscode.sarif-viewer",
-        "github.copilot"
-    ]
-}
