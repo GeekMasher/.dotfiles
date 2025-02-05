@@ -5,7 +5,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 INSTALL_JSON=$SCRIPT_DIR/install.json
 PRESENT=false
 
-DOT_FOLDERS="bin,assets,tmux,nvim,zsh,dev,geek,misc"
+DOT_FOLDERS="bin,assets,tmux,nvim,zsh,dev,geek"
 
 
 # parse other arguments
@@ -13,7 +13,7 @@ for i in "$@"; do
   case $i in
     -i|--interactive)
         # interactive using GUM
-        DOT_FOLDERS="bin,assets,misc"
+        DOT_FOLDERS="bin,assets"
         SELECTED=$(cat $INSTALL_JSON | jq -r 'keys_unsorted[]' | gum choose --limit 10)
         for choice in $(echo $SELECTED | sed "s/,/ /g"); do
             DOT_FOLDERS="$DOT_FOLDERS,$(cat $INSTALL_JSON | jq -r ".$choice")"
@@ -36,7 +36,7 @@ for i in "$@"; do
         ;;
     -w|--work)
         echo "Enabling Work mode..."
-        DOT_FOLDERS="$DOT_FOLDERS,github,vscode"
+        DOT_FOLDERS="$DOT_FOLDERS,github"
         shift
         ;;
     -*|--*)
