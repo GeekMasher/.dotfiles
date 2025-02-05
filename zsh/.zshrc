@@ -1,9 +1,23 @@
+#!/bin/bash
+
+# OS Detection
+case "$(uname -s)" in
+    Linux*)
+        export OSTYPE=Linux;;
+    Darwin*)
+        export OSTYPE=Macos;;
+    *)
+        echo "Unknown Operating System: $(uname -s)"
+esac
 
 # Export different paths
 export PATH=$HOME/.geek/bin:$HOME/.local:/usr/local/bin:$PATH
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "Macos" ]]; then
     export ZSH=/Users/$USER/.oh-my-zsh
+    # Assumes zsh suggestions are from brew
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
     plugins=(
       1password
       git
@@ -17,6 +31,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
       zsh-autosuggestions
     )
 else
+    # Distro
+    case "$(lsb_release -si)" in
+        Ubuntu*)    distro=Ubuntu;;
+        Pop*)       distro=PopOS;;
+        Debian*)    distro=Debian;;
+        *)          distro=""
+    esac
+
     export ZSH=$HOME/.oh-my-zsh
     # See https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
     plugins=(
@@ -63,3 +85,7 @@ if [ -x "$(command -v fastfetch)" ]; then
     fastfetch
 fi
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
