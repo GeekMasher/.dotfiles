@@ -3,9 +3,9 @@
 # OS Detection
 case "$(uname -s)" in
     Linux*)
-        export OSTYPE=Linux;;
+        export OSNAME=Linux;;
     Darwin*)
-        export OSTYPE=Macos;;
+        export OSNAME=Macos;;
     *)
         echo "Unknown Operating System: $(uname -s)"
 esac
@@ -13,7 +13,7 @@ esac
 # Export different paths
 export PATH=$HOME/.geek/bin:$HOME/.local:/usr/local/bin:$PATH
 
-if [[ "$OSTYPE" == "Macos" ]]; then
+if [[ "$OSNAME" == "Macos" ]]; then
     export ZSH=/Users/$USER/.oh-my-zsh
     # Assumes zsh suggestions are from brew
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -31,12 +31,12 @@ if [[ "$OSTYPE" == "Macos" ]]; then
       zsh-autosuggestions
     )
 else
-    # Distro
+    # distro 
     case "$(lsb_release -si)" in
-        Ubuntu*)    distro=Ubuntu;;
-        Pop*)       distro=PopOS;;
-        Debian*)    distro=Debian;;
-        *)          distro=""
+        Ubuntu*)    export OSDISTRO=Ubuntu;;
+        Pop*)       export OSDISTRO=PopOS;;
+        Debian*)    export OSDISTRO=Debian;;
+        *)          export OSDISTRO="$(lsb_release -si)";;
     esac
 
     export ZSH=$HOME/.oh-my-zsh

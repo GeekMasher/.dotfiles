@@ -6,14 +6,14 @@ if [[ "$OSDISTRO" =~ ^(Ubuntu|PopOS|Debian)$ ]]; then
 fi
 
 update() {
-    if [[ "$OSTYPE" == "Linux" ]]; then
+    if [[ "$OSNAME" == "Linux" ]]; then
         if [[ "$OSDISTRO" =~ ^(Ubuntu|PopOS|Debian)$ ]]; then
             sudo apt update -y 
         else 
             echo "Unknown Distro / Package Manager"
         fi
 
-    elif [[ "$OSTYPE" == "Macos" ]]; then
+    elif [[ "$OSNAME" == "Macos" ]]; then
         brew update
     else
         echo "Unknown OS: $machine"
@@ -21,7 +21,7 @@ update() {
 }
 
 upgrade() {
-    if [[ "$OSTYPE" == "Linux" ]]; then
+    if [[ "$OSNAME" == "Linux" ]]; then
         if [[ "$OSDISTRO" =~ ^(Ubuntu|PopOS|Debian)$ ]]; then
             echo "Updating apt..."
             sudo apt upgrade -y 
@@ -36,7 +36,7 @@ upgrade() {
         if [[ -x "$(flatpak)" ]]; then
             flatpak update
         fi
-    elif [[ "$OSTYPE" == "Macos" ]]; then
+    elif [[ "$OSNAME" == "Macos" ]]; then
         echo "Updating brew..."
         brew update 
         brew upgrade 
@@ -61,11 +61,11 @@ install() {
     # Update first before search
     update 
 
-    if [[ "$OSTYPE" == "Linux" ]]; then
+    if [[ "$OSNAME" == "Linux" ]]; then
         if [[ "$OSDISTRO" =~ ^(Ubuntu|PopOS|Debian)$ ]]; then
             sudo apt install -y "$*"
         fi
-    elif [[ "$OSTYPE" == "Macos" ]]; then
+    elif [[ "$OSNAME" == "Macos" ]]; then
         brew install "$*"
     else
         echo "Unknown OS: $machine"
@@ -73,11 +73,11 @@ install() {
 }
 
 search() {
-    if [[ "$OSTYPE" == "Linux" ]]; then
+    if [[ "$OSNAME" == "Linux" ]]; then
         if [[ "$OSDISTRO" =~ ^(Ubuntu|PopOS|Debian)$ ]]; then
             sudo apt-cache search "$*"
         fi
-    elif [[ "$OSTYPE" == "Macos" ]]; then
+    elif [[ "$OSNAME" == "Macos" ]]; then
         brew search "$*"
     else
         echo "Unknown OS: $machine"
