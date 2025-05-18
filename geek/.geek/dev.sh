@@ -2,16 +2,6 @@
 
 PATH=$PATH:~/.local/bin
 
-edit() {
-    if command -v nvim &> /dev/null; then
-        nvim $@
-    elif command -v vim &> /dev/null; then
-        vim $@
-    elif command -v code &> /dev/null; then
-        code $@
-    fi
-}
-
 dot() {
     # if dev present, run dev command
     # dev -q dotfiles
@@ -33,6 +23,9 @@ dot() {
 if [ -d $HOME/.local/share/nvim/mason/bin ]; then
     PATH=$PATH:$HOME/.local/share/nvim/mason/bin
 fi
+
+## Tmux
+alias a="tmux a"
 
 # Languages
 

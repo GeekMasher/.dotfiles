@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Get folder name
+dirname=$(basename "$(pwd)")
+
+# Check if session exists
+if tmux has-session -t "$dirname" 2>/dev/null; then
+    # Attach to session
+    tmux a -t "${dirname}"
+else
+    # Create new session
+    tmux new-session -s "$dirname"
+fi

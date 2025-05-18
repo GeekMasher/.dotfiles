@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Global nvim
+if [ -f /opt/nvim/bin/nvim ]; then
+    /opt/nvim/bin/nvim $@
+elif command -v nvim &> /dev/null; then
+    nvim $@
+elif command -v vim &> /dev/null; then
+    vim $@
+elif command -v code &> /dev/null; then
+    code $@
+fi
