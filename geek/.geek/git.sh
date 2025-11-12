@@ -1,9 +1,11 @@
 
 ## Git
 
+alias gs="git status"
+alias gsu="git submodule update --remote --init --recursive --force"
+
 alias clone="git clone --recursive $@"
 alias clone-lite="git clone --recursive --depth 1 $@"
-alias status="git status"
 alias pull="git pull"
 alias push="git push"
 
