@@ -1,13 +1,33 @@
-#!/usr/
-# https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+#!/bin/bash
+# Nvim installer and updater
+# https://github.com/neovim/neovim/blob/master/INSTALL.md#appimage-universal-linux-package
+set -e
 
-# Python
-pip3 install python-lsp-server
+mode="User"
 
-# JavaScript
-npm install -g typescript typescript-language-server
+get_latest_release() {
+  # https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
+  curl --silent "https://api.github.com/repos/neovim/neovim/releases/latest" |
+    jq -r '.assets[] | select(.name=="nvim-linux-arm64.appimage").browser_download_url'
+}
 
-# Docker
-npm install -g dockerfile-language-server-nodejs
+DOWNLOAD_URL=$(get_latest_release)
+TMP_PATH="/tmp/nvim"
 
+echo "[+] Download URL :: $DOWNLOAD_URL"
+curl -L -o "${TMP_PATH}" "${DOWNLOAD_URL}"
+chmod u+x "${TMP_PATH}"
 
+echo "[+] Downloaded to :: ${TMP_PATH}"
+
+echo "Successfully downloaded Neovim Appimage"
+echo "Version :: $($TMP_PATH --version | head -n 1)"
+
+if [ "$mode" == "Global" ]; then
+    echo "[+] Installing Nvim globally"
+    sudo mkdir -p /opt/nvim
+    sudo mv "${TMP_PATH}" /opt/nvim/nvim
+else
+    echo "[+] Installing Nvim locally"
+    mv "${TMP_PATH}" "$HOME/.local/nvim"
+fi

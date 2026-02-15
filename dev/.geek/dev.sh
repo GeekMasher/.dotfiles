@@ -19,6 +19,8 @@ dot() {
 
 # Tools
 
+## Nvim
+alias nvim-update="install-nvim"
 ## Mason (nvim) installed tools / binaries
 if [ -d $HOME/.local/share/nvim/mason/bin ]; then
     PATH=$PATH:$HOME/.local/share/nvim/mason/bin
@@ -65,4 +67,3 @@ if [ -d "$HOME/.nvm" ]; then
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-
