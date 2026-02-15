@@ -1,23 +1,39 @@
 #!/bin/bash
 
-# Detect distribution
-if [ -f /etc/os-release ]; then
+# Detect package manager
+if command -v brew &> /dev/null; then
+    PKG_MGR="brew"
+elif [ -f /etc/os-release ]; then
     . /etc/os-release
-    OS=$ID
+    case "$ID" in
+        ubuntu|debian)
+            PKG_MGR="apt"
+            ;;
+        arch|manjaro)
+            PKG_MGR="pacman"
+            ;;
+        *)
+            echo "[!] Unsupported distribution: $ID"
+            exit 1
+            ;;
+    esac
+else
+    echo "[!] Unable to detect package manager"
+    exit 1
 fi
 
-case "$OS" in
-    ubuntu|debian)
+case "$PKG_MGR" in
+    apt)
         echo "[+] Updating package lists (Ubuntu/Debian)..."
         sudo apt update
         ;;
-    arch|manjaro)
+    pacman)
         echo "[+] Updating package lists (Arch Linux)..."
         sudo pacman -Sy
         ;;
-    *)
-        echo "[!] Unsupported distribution: $OS"
-        exit 1
+    brew)
+        echo "[+] Updating package lists (Homebrew)..."
+        brew update
         ;;
 esac
 
