@@ -6,4 +6,6 @@ if ! command -v gh codeql &> /dev/null; then
     $SCRIPT_DIR/codeql-update
 fi 
 
-gh codeql-scan --disable-upload $@
+# pass all arguments to gh codeql
+gh codeql-scan --disable-upload "$@"
+

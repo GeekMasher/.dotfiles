@@ -1,10 +1,20 @@
 #!/bin/bash 
+# Select the CodeQL Binary to use 
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+# Mason / Neovim
+if [ -f "$HOME/.local/share/nvim/mason/bin/codeql" ]; then
+    $HOME/.local/share/nvim/mason/bin/codeql $@
 
-if ! command -v gh codeql &> /dev/null; then 
-    $SCRIPT_DIR/codeql-update
-fi 
+else
+    # Default (gh cli)
+    SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-gh codeql $@
+    if ! command -v gh codeql &> /dev/null; then 
+        $SCRIPT_DIR/codeql-update
+    fi 
+
+    gh codeql $@
+
+fi
+
 
