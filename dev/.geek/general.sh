@@ -1,0 +1,1 @@
+/home/geekmasher/development/dotfiles/./general/.geek/general.sh
