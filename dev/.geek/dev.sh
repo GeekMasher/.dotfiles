@@ -33,6 +33,8 @@ alias a="tmux a"
 
 ## Python
 alias python="python3"
+alias pip="pip3"
+
 alias pyfreeze="pip freeze > requirements.txt"
 alias pyinstall="python ./setup.py install"
 alias pycompile="python -O -m compileall ./"
@@ -46,7 +48,9 @@ fi
 ## Rust
 if [ -d "$HOME/.cargo" ]; then
     export RUST_LOG=info
-    source "$HOME/.cargo/env"
+    if [ -f "$HOME/.cargo/env" ]; then
+        source "$HOME/.cargo/env"
+    fi
     PATH=$PATH:~/.cargo/bin
 fi
 
@@ -55,7 +59,7 @@ fi
 if [ -d "$HOME/go" ]; then
     export PATH=$PATH:/usr/local/go/bin
     export GOPATH="$HOME/golang"
-    export GOUSER="geekmasher"
+    export GOUSER="$USER"
     export PATH="$PATH:$(go env GOPATH)/bin"
     # > https://golang.org/doc/code.html#GOPATH
     alias go-here="export GOPATH=$(pwd) && export PATH=$PATH:$(go env GOPATH)/bin"
@@ -66,4 +70,13 @@ if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+## Ruby
+if [ -d "$HOME/.local/share/gem/ruby" ]; then
+    for ruby_dir in "$HOME/.local/share/gem/ruby/"*; do
+        if [ -d "$ruby_dir/bin" ]; then
+            export PATH="$PATH:$ruby_dir/bin"
+        fi
+    done
 fi
