@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -f .release.yml ]; then
+  echo "No .release.yml file found"
+  exit 1
+fi
+
+# Check if clean working directory
+if [ -n "$(git status --porcelain)" ]; then
+  echo "Working directory not clean"
+  exit 1
+fi
+
+patch-release-me
+
+# Get new "version" from .release.yml
+version=$(yq -r .version .release.yml)
+
+branch "v$version"
+
+git add .
+
+git commit -m "feat(version): v$version"
+
+git push origin "v$version"

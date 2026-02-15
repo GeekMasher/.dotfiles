@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get folder name
 dirname=$(basename "$(pwd)")
