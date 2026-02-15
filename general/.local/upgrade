@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Detect distribution
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+case "$OS" in
+    ubuntu|debian)
+        echo "[+] Upgrading packages (Ubuntu/Debian)..."
+        sudo apt update && sudo apt upgrade -y
+        sudo apt autoremove -y
+        sudo apt autoclean
+        ;;
+    arch|manjaro)
+        echo "[+] Upgrading packages (Arch Linux)..."
+        sudo pacman -Syu --noconfirm
+        sudo pacman -Sc --noconfirm
+        ;;
+    *)
+        echo "[!] Unsupported distribution: $OS"
+        exit 1
+        ;;
+esac
+
+echo "[+] System upgraded"
