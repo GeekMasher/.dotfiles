@@ -5,9 +5,14 @@ This repo has my dotfile's and random assortment of scripts.
 ## Installing
 
 ```bash
-git clone https://github.com/GeekMasher/.dotfiles.git dotfiles && cd dotfiles && ./install.sh
+git clone https://github.com/GeekMasher/.dotfiles.git ~/.dotfiles && ~/.dotfiles/install.sh
 ```
 
+### [DotMe](https://github.com/42ByteLabs/dotme)
+
+```bash
+dotme add https://github.com/GeekMasher/.dotfiles.git
+```
 
 ## Resources
 
