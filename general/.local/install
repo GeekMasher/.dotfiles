@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Detect package manager
+if command -v brew &> /dev/null; then
+    PKG_MGR="brew"
+elif [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+        ubuntu|debian|pop)
+            PKG_MGR="apt"
+            ;;
+        arch|manjaro)
+            PKG_MGR="pacman"
+            ;;
+        *)
+            echo "[!] Unsupported distribution: $ID"
+            exit 1
+            ;;
+    esac
+else
+    echo "[!] Unable to detect package manager"
+    exit 1
+fi
+
+if [ $# -eq 0 ]; then
+    echo "Usage: install <package_name> [additional_packages...]"
+    exit 1
+fi
+
+# Check if it's a .deb file
+if [[ "$1" == *.deb ]] && [ -f "$1" ]; then
+    echo "[+] Installing .deb package: $1"
+    sudo dpkg -i "$1"
+    echo "[+] Fixing dependencies..."
+    sudo apt install -f -y
+    exit 0
+fi
+
+case "$PKG_MGR" in
+    apt)
+        echo "[+] Installing packages with apt (Ubuntu/Debian)..."
+        sudo apt update
+        sudo apt install -y "$@"
+        ;;
+    pacman)
+        echo "[+] Installing packages with pacman (Arch Linux)..."
+        sudo pacman -S --noconfirm "$@"
+        ;;
+    brew)
+        echo "[+] Installing packages with brew (Homebrew)..."
+        brew install "$@"
+        ;;
+esac
+
+echo "[+] Installation complete"

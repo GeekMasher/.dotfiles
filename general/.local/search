@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Detect package manager
+if command -v brew &> /dev/null; then
+    PKG_MGR="brew"
+elif [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+        ubuntu|debian|pop)
+            PKG_MGR="apt"
+            ;;
+        arch|manjaro)
+            PKG_MGR="pacman"
+            ;;
+        *)
+            echo "[!] Unsupported distribution: $ID"
+            exit 1
+            ;;
+    esac
+else
+    echo "[!] Unable to detect package manager"
+    exit 1
+fi
+
+if [ $# -eq 0 ]; then
+    echo "Usage: search <search_term>"
+    exit 1
+fi
+
+case "$PKG_MGR" in
+    apt)
+        echo "[+] Searching packages with apt (Ubuntu/Debian)..."
+        apt-cache search "$@"
+        ;;
+    pacman)
+        echo "[+] Searching packages with pacman (Arch Linux)..."
+        pacman -Ss "$@"
+        ;;
+    brew)
+        echo "[+] Searching packages with brew (Homebrew)..."
+        brew search "$@"
+        ;;
+esac
