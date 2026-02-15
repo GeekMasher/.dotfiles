@@ -1,1 +1,0 @@
-/home/geekmasher/development/dotfiles/./general/.geek/updates.sh
