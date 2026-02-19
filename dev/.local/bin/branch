@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]; then
     # Ask for branch style
-    STYLE=$(gum choose "feature" "username/feature" "fix-fix" "update-update" --header "Select branch style:")
+    STYLE=$(gum choose "feature" "username/feature" "fix" "version" "patch" --header "Select branch style:")
     
     # Ask for the name
     if [[ "$STYLE" == "feature" ]]; then
@@ -12,12 +12,15 @@ if [ -z "$1" ]; then
         NAME=$(gum input --placeholder "feature name")
         USERNAME=$(git config user.name | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
         BRANCH="$USERNAME/$NAME"
-    elif [[ "$STYLE" == "fix-fix" ]]; then
+    elif [[ "$STYLE" == "version" ]]; then
+        NAME=$(gum input --placeholder "version")
+        BRANCH="version/$NAME"
+    elif [[ "$STYLE" == "fix" ]]; then
         NAME=$(gum input --placeholder "fix name")
         BRANCH="fix-$NAME"
-    elif [[ "$STYLE" == "update-update" ]]; then
-        NAME=$(gum input --placeholder "update name")
-        BRANCH="update-$NAME"
+    elif [[ "$STYLE" == "patch" ]]; then
+        NAME=$(gum input --placeholder "patch name")
+        BRANCH="patch-$NAME"
     fi
 else
     BRANCH="$1"
