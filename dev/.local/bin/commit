@@ -1,5 +1,5 @@
 #!/bin/bash
-# This makes commiting a joy!
+# Interactive git commit helper with conventional commits support
 
 set -e
 
@@ -9,40 +9,53 @@ if ! command -v gum &> /dev/null; then
     exit 1
 fi
 
-# security
-if ! command -v audit &> /dev/null; then
-    if [ -z ${AUDIT_REQUIRED+x} ]; then 
-        echo "[!] Audit tool is not present, please install / use an audit tool"
-        exit 1
-    fi
-    echo "[!] Skipping audit"
-    gum spin --spinner dot --title 'Checking and Commiting your Code!' sleep 1
-else
-    gum spin --spinner dot --title 'Running audit script...' audit
-    echo "[+] No security issues found"
+if ! git rev-parse --is-inside-work-tree &> /dev/null; then
+    echo "[!] Not in a git repository"
+    exit 1
 fi
 
-TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
-SCOPE=$(gum input --placeholder "scope")
+TYPE=$(gum choose "feat" "fix" "docs" "style" "refactor" "perf" "test" "build" "ci" "chore" "revert")
+SCOPE=$(gum input --placeholder "scope (optional)")
 
 test -n "$SCOPE" && SCOPE="($SCOPE)"
 
-SUMMARY=$(gum input --value "$TYPE$SCOPE: " --placeholder "Summary of this change" --width=90)
+SUMMARY=$(gum input --value "$TYPE$SCOPE: " --placeholder "Summary of this change" --width=90 --char-limit=72)
 DESCRIPTION=$(gum write --placeholder "Details of this change (CTRL+D to finish)")
 
-if [ -z "$(git status -s -uno | grep -v '^ ' | awk '{print $2}')" ]; then 
-    gum confirm "No staged files. Commit all?" && git add .
+if [ -z "$SUMMARY" ]; then
+    echo "[!] Commit summary cannot be empty"
+    exit 1
 fi
 
-gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$DESCRIPTION" &> /dev/null
+STAGED_FILES=$(git diff --cached --name-only)
+if [ -z "$STAGED_FILES" ]; then
+    echo "[!] No staged files found"
+    UNSTAGED_FILES=$(git status -s -uno | grep -v '^??' | wc -l)
+    if [ "$UNSTAGED_FILES" -gt 0 ]; then
+        gum confirm "Stage all modified files?" && git add -u || exit 1
+    else
+        echo "[!] No files to commit"
+        exit 1
+    fi
+fi
 
-GIT_URL=$(git config --get remote.origin.url)
-gum confirm "Push to remote? ${GIT_URL}" && \
-    gum spin --spinner dot --title "Push to remote..." git push origin
+gum style --foreground 214 "Files to commit:"
+git diff --cached --name-status | gum format
+
+gum confirm "Commit changes?" && git commit -m "$SUMMARY" -m "$DESCRIPTION"
+
+if git remote | grep -q origin; then
+    CURRENT_BRANCH=$(git branch --show-current)
+    GIT_URL=$(git config --get remote.origin.url)
+    if gum confirm "Push to remote? ${GIT_URL} (${CURRENT_BRANCH})"; then
+        gum spin --spinner dot --title "Pushing to ${CURRENT_BRANCH}..." -- git push origin "$CURRENT_BRANCH"
+    fi
+else
+    echo "[!] No remote 'origin' configured, skipping push"
+fi
 
 gum style \
-    --foreground 212 --border-foreground 212 --border double \
+    --border double \
     --border-foreground="#8ac149" --foreground="#8ac149" \
     --align center --width 50 --margin "1 2" --padding "2 4" \
-    'Keep commiting!'
-
+    'Commit successful! ✓'
