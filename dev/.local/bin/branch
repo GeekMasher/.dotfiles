@@ -1,9 +1,32 @@
 #!/usr/bin/env bash
 
-if git rev-parse --verify --quiet "refs/heads/$1"; then
-    git checkout "$1"
-    git pull origin "$1"
+if [ -z "$1" ]; then
+    # Ask for branch style
+    STYLE=$(gum choose "feature" "username/feature" "fix-fix" "update-update" --header "Select branch style:")
+    
+    # Ask for the name
+    if [[ "$STYLE" == "feature" ]]; then
+        NAME=$(gum input --placeholder "feature name")
+        BRANCH="$NAME"
+    elif [[ "$STYLE" == "username/feature" ]]; then
+        NAME=$(gum input --placeholder "feature name")
+        USERNAME=$(git config user.name | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+        BRANCH="$USERNAME/$NAME"
+    elif [[ "$STYLE" == "fix-fix" ]]; then
+        NAME=$(gum input --placeholder "fix name")
+        BRANCH="fix-$NAME"
+    elif [[ "$STYLE" == "update-update" ]]; then
+        NAME=$(gum input --placeholder "update name")
+        BRANCH="update-$NAME"
+    fi
 else
-    git checkout -b "$1"
+    BRANCH="$1"
 fi
-git push --set-upstream origin "$1"
+
+if git rev-parse --verify --quiet "refs/heads/$BRANCH"; then
+    git checkout "$BRANCH"
+    git pull origin "$BRANCH"
+else
+    git checkout -b "$BRANCH"
+fi
+git push --set-upstream origin "$BRANCH"
