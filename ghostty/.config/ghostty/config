@@ -1,7 +1,21 @@
 
+language = en
 # https://ghostty.org/docs/features/theme
 # https://iterm2colorschemes.com/
 theme = TokyoNight
 
-background-opacity = 0.8
+background-opacity = 0.7
+background-blur = true
+
+fullscreen = false
+
+desktop-notifications = true
+progress-style = true
+
+clipboard-read = ask
+clipboard-write = ask
+clipboard-trim-trailing-spaces = true
+
+auto-update = check
+auto-update-channel = stable
 
