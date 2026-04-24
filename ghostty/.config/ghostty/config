@@ -1,5 +1,10 @@
 
 language = en
+
+# https://ghostty.org/docs/help/terminfo
+term = xterm-256color
+shell-integration-features = sudo
+
 # https://ghostty.org/docs/features/theme
 # https://iterm2colorschemes.com/
 theme = TokyoNight
