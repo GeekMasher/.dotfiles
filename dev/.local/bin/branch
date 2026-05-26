@@ -1,14 +1,30 @@
 #!/usr/bin/env bash
+set -e
 
-if [ -z "$1" ]; then
-    # Ask for branch style
-    STYLE=$(gum choose "feature" "username/feature" "fix" "version" "patch" --header "Select branch style:")
-    
+BRANCH_NAME="$1"
+BRANCH_MODE="${BRANCH_MODE}"
+
+function quick-chechout() {
+    echo "[+] Checkout: '$1'"
+    git checkout "$1"
+    # https://stackoverflow.com/questions/10697463/resolve-git-merge-conflicts-in-favor-of-their-changes-during-a-pull
+    git pull -s recursive origin "$1" >/dev/null
+    git branch --set-upstream >/dev/null
+}
+
+if [ "$1" == "" ]; then
+    if [ "$BRANCH_MODE" == "" ]; then
+        # Ask for branch style
+        STYLE=$(gum choose "feature" "username/feature" "fix" "version" "patch" --header "Select branch style:")
+    else
+        STYLE="$BRANCH_MODE"
+    fi
+
     # Ask for the name
     if [[ "$STYLE" == "feature" ]]; then
         NAME=$(gum input --placeholder "feature name")
         BRANCH="$NAME"
-    elif [[ "$STYLE" == "username/feature" ]]; then
+    elif [ "$STYLE" == "username/feature" ] || [ "$STYLE" == "username" ]; then
         NAME=$(gum input --placeholder "feature name")
         USERNAME=$(git config user.name | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
         BRANCH="$USERNAME/$NAME"
@@ -21,15 +37,23 @@ if [ -z "$1" ]; then
     elif [[ "$STYLE" == "patch" ]]; then
         NAME=$(gum input --placeholder "patch name")
         BRANCH="patch-$NAME"
+    else
+        echo "[!] Unknown branch mode selected: $BRANCH_MODE"
+        exit 1
     fi
 else
     BRANCH="$1"
 fi
 
 if git rev-parse --verify --quiet "refs/heads/$BRANCH"; then
-    git checkout "$BRANCH"
-    git pull origin "$BRANCH"
+    if [ "$BRANCH" == "main" ]; then
+        quick-chechout "$BRANCH"
+    else
+        # if branch already exists and not standard, prompt to delete it
+        gum confirm "Branch already exists, delete it?" && git branch -D $BRANCH
+        echo "[+] Deleted $BRANCH"
+        quick-chechout "$BRANCH"
+    fi
 else
     git checkout -b "$BRANCH"
 fi
-git push --set-upstream origin "$BRANCH"
