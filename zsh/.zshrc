@@ -15,8 +15,10 @@ export PATH=$HOME/.geek/bin:$HOME/.local:/usr/local/bin:$PATH
 
 if [[ "$OSNAME" == "Macos" ]]; then
     export ZSH=/Users/$USER/.oh-my-zsh
+    export PATH="/opt/homebrew/bin:$PATH"
+
     # Assumes zsh suggestions are from brew
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
     plugins=(
       1password
@@ -28,7 +30,6 @@ if [[ "$OSNAME" == "Macos" ]]; then
       python
       rust
       colored-man-pages
-      zsh-autosuggestions
     )
 else
     # distro 
@@ -80,12 +81,11 @@ if [ -d $HOME/.geek ]; then
     done
 fi
 
-# Run fastfetch if present on machine
-if [ -x "$(command -v fastfetch)" ]; then
-    fastfetch
+# If in TMUX, don't run pretty tools
+if [ -z "$TMUX" ]; then 
+    # Run fastfetch if present on machine
+    if [ -x "$(command -v fastfetch)" ]; then
+        fastfetch
+    fi
 fi
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
